@@ -1,0 +1,59 @@
+# Godot 4+ .gitignore
+
+# Godot import files (generated)
+
+.import/
+
+# Imported assets (regenerated automatically)
+
+*.import
+
+# Mono / C# builds
+
+.mono/
+data_*/
+
+# Export builds
+
+export/
+build/
+
+# Godot editor settings (local to machine)
+
+.editor/
+
+# Local filesystem metadata
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+
+*.tmp
+*.temp
+
+# Godot crash logs
+
+crashlog.txt
+
+# VS Code
+
+.vscode/
+
+# JetBrains IDEs
+
+.idea/
+
+# Rider
+
+*.sln.iml
+
+# OS files
+
+*.log
+
+# Backup files
+
+*~
+*.bak
