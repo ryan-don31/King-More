@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://c7dkyb5r1fjns"]
 
 [ext_resource type="Script" uid="uid://6dnllnn0dbs2" path="res://scripts/player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://ciqofofnbu1u3" path="res://scripts/camera.gd" id="3_r66lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+size = Vector2(64, 64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4dohe"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [node name="Player" type="CharacterBody2D" unique_id=1192430272]
 script = ExtResource("1_onrkg")
@@ -13,7 +16,9 @@ script = ExtResource("1_onrkg")
 shape = SubResource("RectangleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=166231706]
-texture = ExtResource("2_i3pqv")
+scale = Vector2(0.5, 0.5)
+texture = SubResource("CompressedTexture2D_4dohe")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=285032701]
 script = ExtResource("3_r66lb")
+smooth_speed = 16.0
