@@ -1,3 +1,10 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1773173473
-icon.svg::CompressedTexture2D::4767865448617355823::1773173467::1773173474::1::::<><><>0<>0<>887d41dab19100a0542558203504bffc<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://::1773186117
+icon.svg::CompressedTexture2D::5911532976341003405::1773185906::1773186082::1::::<><><>0<>0<>6be8c30bf2c0ae219fdc76546f638c38<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://assets/::1773186101
+::res://prefabs/::1773186117
+player.tscn::PackedScene::7025727625721636824::1773186600::0::1::::<><><>0<>0<><>::uid://6dnllnn0dbs2::::res://scripts/player.gd<>uid://cqhuc4uu7akkr::::res://icon.svg
+::res://scenes/::1773186158
+level.tscn::PackedScene::2465046561801002700::1773186158::0::1::::<><><>0<>0<><>::
+::res://scripts/::1773186229
+player.gd::GDScript::2182856849143598731::1773186588::0::1::::<>CharacterBody2D<><>0<>0<><>::

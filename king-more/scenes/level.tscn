@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bbec7r8eeoens"]
+
+[ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://prefabs/player.tscn" id="1_2q6dc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
+
+[node name="level" type="Node2D" unique_id=1535586598]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1265593925]
+offset_left = -1392.0
+offset_top = -758.0
+offset_right = 1376.0
+offset_bottom = 983.0
+texture = SubResource("PlaceholderTexture2D_2q6dc")
+
+[node name="Player" parent="." unique_id=1192430272 instance=ExtResource("1_2q6dc")]
