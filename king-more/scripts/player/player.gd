@@ -28,6 +28,8 @@ func shoot_gun(weapon: ItemInstance):
 func _physics_process(delta: float) -> void:
 	if debug:
 		handle_debug()
+		
+	get_scroll()
 	
 	var direction = get_input_direction()
 	
@@ -37,6 +39,14 @@ func _physics_process(delta: float) -> void:
 
 func get_input_direction() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+func get_scroll():
+	# Sorts out what to do when the player scrolls up/down on the mouse wheel
+	# Probably just going to be changing which inventory item is selected
+	if Input.is_action_just_pressed("scroll_up"):
+		inventory.slot_change(1)
+	if Input.is_action_just_pressed("scroll_down"):
+		inventory.slot_change(-1)
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug"):
