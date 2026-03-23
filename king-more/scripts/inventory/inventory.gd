@@ -24,11 +24,11 @@ func add_item(item: ItemInstance) -> bool:
 func move_item(from_index: int, to_index: int):
 	pass
 	
-func slot_change(change: int):
+func slot_change(change: int) -> ItemInstance:
 	if change == -1 and selected_slot > 0:
 		selected_slot -= 1
-	
 	if change == 1 and selected_slot < 5:
 		selected_slot += 1
-		
 	emit_signal("inventory_changed")
+	
+	return slots[selected_slot]

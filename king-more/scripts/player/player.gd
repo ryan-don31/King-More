@@ -14,22 +14,16 @@ func _ready():
 	equipment = Equipment.new()
 	
 func attack():
-	var weapon = equipment.weapon
-	if weapon == null:
-		pass
-	
-	if weapon.data is GunData:
-		shoot_gun(weapon)
-	# Under this if statement is where I'll put things like swinging melee, using diff weapon types, etc
+	var item = equipment.item
+	# TODO: Setup what happens when you use the item
 
-func shoot_gun(weapon: ItemInstance):
-	print(weapon) # Using this just for debugging
 
 func _physics_process(delta: float) -> void:
 	if debug:
 		handle_debug()
 		
 	get_scroll()
+	get_use()
 	
 	var direction = get_input_direction()
 	
@@ -44,10 +38,15 @@ func get_scroll():
 	# Sorts out what to do when the player scrolls up/down on the mouse wheel
 	# Probably just going to be changing which inventory item is selected
 	if Input.is_action_just_pressed("scroll_up"):
-		inventory.slot_change(-1)
+		equipment.weapon = inventory.slot_change(-1)
 	if Input.is_action_just_pressed("scroll_down"):
-		inventory.slot_change(1)
+		equipment.weapon = inventory.slot_change(1)
 
+func get_use():
+	if Input.is_action_just_pressed("use"):
+		attack()
+
+# These two functions down here are #FUGLY, I need to put them somewhere else
 func handle_debug():
 	if Input.is_action_just_pressed("debug"):
 		var gun_template = GunData.new()
