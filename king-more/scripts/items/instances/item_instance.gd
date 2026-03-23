@@ -5,6 +5,9 @@ class_name ItemInstance
 @export var damage: int = 0
 @export var fire_rate: float = 0.0
 
+func initialize(weapon_data: WeaponData):
+	data = weapon_data
+	
 func generate_stats():
-	# TODO: make a system for generating damage + fire rate based off the current game state
+	#TODO: Make a function to generate stats, given a max/min for damage, fire rate, etc
 	pass

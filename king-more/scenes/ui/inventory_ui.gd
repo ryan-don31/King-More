@@ -1,23 +1,29 @@
 extends Control
 
-@export var inventory: Inventory
-@export var equipment: Equipment
+@export var player: Node
 @export var slot_container: HBoxContainer
 
+var inventory: Inventory
+var equipment: Equipment
 var slot_nodes: Array[Node] = []
 
 func _ready():
+	inventory = player.inventory
+	equipment = player.equipment
 	slot_nodes = slot_container.get_children()
+	
+	inventory.connect("inventory_changed", Callable(self, "update_ui"))
+	
 	update_ui()
 
 func update_ui():
 	for i in range(slot_nodes.size()):
 		var slot = slot_nodes[i]
 		var item = inventory.slots[i] if i < inventory.slots.size() else null
+
 		if item != null:
-			slot.texture = preload("res://icon.svg")
+			print("something")
+			slot.texture = load("res://assets/sprites/inventory/inventoryslot_full.png")
 		else:
-			slot.texture = null
-			
-func on_item_added(item: ItemInstance):
-	update_ui()
+			print(i)
+			slot.texture = load("res://assets/sprites/inventory/inventoryslot_empty.png")

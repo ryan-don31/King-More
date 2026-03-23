@@ -7,6 +7,8 @@ const SPEED = 300.0
 @export var inventory: Inventory # Player's inventory
 @export var equipment: Equipment # Currently equipped item
 
+@export var debug: bool
+
 func _ready():
 	inventory = Inventory.new()
 	equipment = Equipment.new()
@@ -24,18 +26,33 @@ func shoot_gun(weapon: ItemInstance):
 	print(weapon) # Using this just for debugging
 
 func _physics_process(delta: float) -> void:
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction_x := Input.get_axis("left", "right")
-	var direction_y := Input.get_axis("up", "down")
-	if direction_x:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-	if direction_y:
-		velocity.y = direction_y * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+	if debug:
+		handle_debug()
+	
+	var direction = get_input_direction()
+	
+	velocity = direction * SPEED
 	
 	move_and_slide()
+
+func get_input_direction() -> Vector2:
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+func handle_debug():
+	if Input.is_action_just_pressed("debug"):
+		var gun_template = GunData.new()
+		gun_template.name = "Basic Gun"
+		gun_template.damage = 69
+		gun_template.fire_rate = 1000.0
+		
+		var dropped_item = ItemInstance.new()
+		dropped_item.initialize(gun_template)
+		
+		spawn_world_item(dropped_item, Vector2(100, 100))
+		
+func spawn_world_item(item_instance: ItemInstance, position: Vector2):
+	var scene = preload("res://scenes/items/world_item.tscn")
+	var world_item = scene.instantiate()
+	world_item.item = item_instance
+	world_item.position = position
+	get_tree().current_scene.add_child(world_item)

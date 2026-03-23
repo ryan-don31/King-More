@@ -14,8 +14,8 @@ slot_container = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=895736893]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="Slot0" type="TextureRect" parent="HBoxContainer" unique_id=986851733]
 layout_mode = 2
