@@ -44,9 +44,9 @@ func get_scroll():
 	# Sorts out what to do when the player scrolls up/down on the mouse wheel
 	# Probably just going to be changing which inventory item is selected
 	if Input.is_action_just_pressed("scroll_up"):
-		inventory.slot_change(1)
-	if Input.is_action_just_pressed("scroll_down"):
 		inventory.slot_change(-1)
+	if Input.is_action_just_pressed("scroll_down"):
+		inventory.slot_change(1)
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug"):
