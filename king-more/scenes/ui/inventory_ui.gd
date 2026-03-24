@@ -5,12 +5,10 @@ extends Control
 @export var highlight: TextureRect
 
 var inventory: Inventory
-var equipment: Equipment
 var slot_nodes: Array[Node] = []
 
 func _ready():
 	inventory = player.inventory
-	equipment = player.equipment
 	slot_nodes = slot_container.get_children()
 	
 	inventory.connect("inventory_changed", Callable(self, "update_ui"))

@@ -9,6 +9,9 @@ signal inventory_changed
 var slots: Array[ItemInstance] = []
 var selected_slot: int = 0
 
+# CURRENT EQUIPPED ITEMS
+var selected_item: ItemInstance = null
+
 # Make sure the slots is limited to the current max size
 func _init():
 	slots.resize(size)
@@ -24,11 +27,12 @@ func add_item(item: ItemInstance) -> bool:
 func move_item(from_index: int, to_index: int):
 	pass
 	
-func slot_change(change: int) -> ItemInstance:
+func slot_change(change: int):	
 	if change == -1 and selected_slot > 0:
 		selected_slot -= 1
-	if change == 1 and selected_slot < 5:
+	if change == 1 and selected_slot < 4:
 		selected_slot += 1
+	
 	emit_signal("inventory_changed")
 	
-	return slots[selected_slot]
+	selected_item = slots[selected_slot]

@@ -13,8 +13,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	is_hovered = false
 	modulate = Color(1, 1, 1)
-	
-	
+
 func _process(delta):
 	if is_hovered and Input.is_action_just_pressed("interact"):
 		pickup()

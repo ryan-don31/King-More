@@ -15,6 +15,10 @@ run/main_scene="uid://bbec7r8eeoens"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ItemSpawner="*uid://k8amg3figabe"
+
 [global_group]
 
 player=""

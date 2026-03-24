@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bbec7r8eeoens"]
+
+[ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
+
+[node name="level" type="Node2D" unique_id=1535586598]
+
+[node name="Backdrop" type="TextureRect" parent="." unique_id=1265593925]
+offset_left = -692.0
+offset_top = -423.0
+offset_right = 2076.0
+offset_bottom = 1318.0
+texture = SubResource("PlaceholderTexture2D_2q6dc")
+
+[node name="Player" parent="." unique_id=1192430272 groups=["player"] instance=ExtResource("1_2q6dc")]
+debug = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=142658751]
+
+[node name="InventoryUI" parent="CanvasLayer" unique_id=911866059 node_paths=PackedStringArray("player") instance=ExtResource("3_b2cq8")]
+offset_left = 32.0
+offset_top = 586.0
+offset_right = -960.0
+offset_bottom = -30.0
+mouse_filter = 2
+player = NodePath("../../Player")
