@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://i1tdabwipdib" path="res://scenes/levels/wave_spawner.tscn" id="3_xb4v1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
 
@@ -26,3 +27,13 @@ offset_right = -960.0
 offset_bottom = -30.0
 mouse_filter = 2
 player = NodePath("../../Player")
+
+[node name="SpawnPoints" type="Node" parent="." unique_id=1184092214]
+
+[node name="SpawnPoint1" type="Marker2D" parent="SpawnPoints" unique_id=82742496]
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" unique_id=2131624153]
+
+[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints" unique_id=2043715209]
+
+[node name="WaveSpawner" parent="." unique_id=2111597040 instance=ExtResource("3_xb4v1")]
