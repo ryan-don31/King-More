@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ddb2f7hgpp2n6"]
+
+[ext_resource type="Script" uid="uid://b1wit054phaps" path="res://scenes/ui/inventory_ui.gd" id="1_p0ay3"]
+[ext_resource type="Texture2D" uid="uid://degnom34tpm73" path="res://assets/sprites/inventory/inventoryslot_select.png" id="2_jywan"]
+
+[node name="InventoryUI" type="Control" unique_id=911866059 node_paths=PackedStringArray("slot_container", "highlight")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p0ay3")
+slot_container = NodePath("HBoxContainer")
+highlight = NodePath("Highlight")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=895736893]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="Slot0" type="TextureRect" parent="HBoxContainer" unique_id=986851733]
+layout_mode = 2
+
+[node name="Slot1" type="TextureRect" parent="HBoxContainer" unique_id=1143838741]
+layout_mode = 2
+
+[node name="Slot2" type="TextureRect" parent="HBoxContainer" unique_id=1440142265]
+layout_mode = 2
+
+[node name="Slot3" type="TextureRect" parent="HBoxContainer" unique_id=237805216]
+layout_mode = 2
+
+[node name="Slot4" type="TextureRect" parent="HBoxContainer" unique_id=950271371]
+layout_mode = 2
+
+[node name="Highlight" type="TextureRect" parent="." unique_id=1340993057]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_jywan")
