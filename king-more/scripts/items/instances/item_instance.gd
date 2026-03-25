@@ -1,9 +1,14 @@
 extends Resource
 class_name ItemInstance
 
-@export var item_type: WeaponData = WeaponData.new()
-@export var damage: int = 0
-@export var fire_rate: float = 0.0
+var name: String = ""
+var item_type: String = ""
+var damage: float = 0.0		# OPTIONAL - Damage dealt
+var healing: float = 0.0	# OPTIONAL - Healing dealt
+var fire_rate: float = 0.0	# Time in seconds between uses
+
+func _to_string() -> String:
+	return "ItemInstance(name=%s, item_type=%s, damage=%d, healing=%d, fire_rate=%d)" % [name, item_type, damage, healing, fire_rate]
 
 func generate_stats():
 	#TODO: Make a function to generate stats, given a max/min for damage, fire rate, etc

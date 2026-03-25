@@ -1,20 +1,60 @@
 [gd_scene format=3 uid="uid://bals7fwpwhbdq"]
 
 [ext_resource type="Script" uid="uid://bms63f0fjm1cl" path="res://scenes/items/world_item.gd" id="1_7mscw"]
-[ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="2_rm7n5"]
+[ext_resource type="Texture2D" uid="uid://ng1qxgsp7bwr" path="res://assets/sprites/items/basic_gun.png" id="2_7mscw"]
+[ext_resource type="PackedScene" uid="uid://c7qu7efu51dax" path="res://scenes/ui/item_preview.tscn" id="3_rm7n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mscw"]
 size = Vector2(32, 32)
 
-[node name="World_item" type="Area2D" unique_id=1265179411]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm7n5"]
+size = Vector2(32, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_75r5w"]
+
+[node name="World_item" type="RigidBody2D" unique_id=320915920 groups=["worlditem"]]
+collision_layer = 3
+collision_mask = 3
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 10.0
 script = ExtResource("1_7mscw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=525196095]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_rm7n5")
+position = Vector2(5.9604645e-08, -5.9604645e-07)
+scale = Vector2(0.23880596, 0.2882883)
+texture = ExtResource("2_7mscw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2127094937]
 shape = SubResource("RectangleShape2D_7mscw")
 
+[node name="MouseArea2D" type="Area2D" parent="." unique_id=1006760896]
+
+[node name="MouseAreaShape" type="CollisionShape2D" parent="MouseArea2D" unique_id=213180367]
+shape = SubResource("RectangleShape2D_rm7n5")
+
+[node name="Item_Preview" type="Control" parent="." unique_id=1573282438]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = -134.0
+offset_right = -40.0
+offset_bottom = -94.0
+
+[node name="Text" parent="Item_Preview" unique_id=1854170295 instance=ExtResource("3_rm7n5")]
+z_index = 1
+layout_mode = 1
+offset_right = -40.0
+offset_bottom = -40.0
+script = null
+
+[node name="Backdrop" type="TextureRect" parent="Item_Preview" unique_id=844829127]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 87.0
+texture = SubResource("PlaceholderTexture2D_75r5w")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="MouseArea2D" to="." method="_on_mouse_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea2D" to="." method="_on_mouse_area_2d_mouse_exited"]

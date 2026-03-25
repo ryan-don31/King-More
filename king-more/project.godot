@@ -23,6 +23,7 @@ Debug="*uid://d3too2hdnspji"
 [global_group]
 
 player=""
+worlditem=""
 
 [input]
 

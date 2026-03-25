@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c7qu7efu51dax"]
+
+[ext_resource type="Script" uid="uid://hrapdvnhkpym" path="res://scenes/ui/item_preview.gd" id="1_px2sx"]
+
+[node name="Item_Preview" type="Control" unique_id=1854170295]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_px2sx")
+
+[node name="Label" type="Label" parent="." unique_id=1473448003]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Some Text"

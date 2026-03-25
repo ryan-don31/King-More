@@ -11,8 +11,6 @@ const SPEED = 300.0
 # Inventory/equipment stuff
 @export var inventory: Inventory # Player's inventory
 
-@export var debug: bool
-
 func _ready():
 	inventory = Inventory.new()
 	
@@ -20,21 +18,15 @@ func use():
 	var item = inventory.selected_item
 	
 	if(item):
-		print("Item:",item.item_type.name,"Damage:",item.damage)
+		print(item)
 		var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
-		
-		projectile.global_position = global_position
-		
 		var dir = (get_global_mouse_position() - global_position).normalized()
+		projectile.global_position = global_position
 		projectile.direction = dir
-		
 		get_tree().current_scene.add_child(projectile)
-	# TODO: Setup what happens when you use the item
 
-func _process(delta: float) -> void:
-	if debug:
-		handle_debug()
-		
+func _process(_delta: float) -> void:
+	handle_debug()
 	check_inputs()
 	animate_item()
 
@@ -59,7 +51,7 @@ func animate_item():
 		item_pivot.scale.y = 1
 		player_sprite.scale.x = 0.5
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = get_move_direction()
 	
 	velocity = direction * SPEED
@@ -82,7 +74,7 @@ func check_inputs():
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
-		Debug.make_item()
+		Debug.make_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
 		Debug.zoom_camera(camera)

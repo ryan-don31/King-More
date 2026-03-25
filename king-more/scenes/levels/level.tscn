@@ -8,6 +8,8 @@
 [node name="level" type="Node2D" unique_id=1535586598]
 
 [node name="Backdrop" type="TextureRect" parent="." unique_id=1265593925]
+visible = false
+z_index = -1
 offset_left = -692.0
 offset_top = -423.0
 offset_right = 2076.0
@@ -15,7 +17,6 @@ offset_bottom = 1318.0
 texture = SubResource("PlaceholderTexture2D_2q6dc")
 
 [node name="Player" parent="." unique_id=1192430272 groups=["player"] instance=ExtResource("1_2q6dc")]
-debug = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=142658751]
 

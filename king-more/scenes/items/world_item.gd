@@ -2,19 +2,12 @@ extends Node2D
 
 # This is the actual item you see on the floor in the world
 
-@export var item: ItemInstance
-
+var item: ItemInstance
 var is_hovered: bool = false
 
-func _on_mouse_entered() -> void:
-	is_hovered = true
-	modulate = Color(1, 1, 0.8)
+@onready var item_preview: Control = $Item_Preview
 
-func _on_mouse_exited() -> void:
-	is_hovered = false
-	modulate = Color(1, 1, 1)
-
-func _process(delta):
+func _process(_delta):
 	if is_hovered and Input.is_action_just_pressed("interact"):
 		pickup()
 
@@ -24,3 +17,17 @@ func pickup():
 	
 	if player and player.inventory.add_item(item):
 		queue_free()
+
+
+func _on_mouse_area_2d_mouse_entered() -> void:
+	print("Yep mouse entered")
+	is_hovered = true
+	item_preview.visible = true
+	modulate = Color(1, 1, 0.5)
+
+
+func _on_mouse_area_2d_mouse_exited() -> void:
+	print("Yep mouse exited")
+	is_hovered = false
+	item_preview.visible = false
+	modulate = Color(1, 1, 1)
