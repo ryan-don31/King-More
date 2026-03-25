@@ -21,6 +21,7 @@ func add_item(item: ItemInstance) -> bool:
 		if slots[i] == null:
 			slots[i] = item
 			emit_signal("inventory_changed")
+			selected_item = slots[selected_slot]
 			return true
 	return false
 	

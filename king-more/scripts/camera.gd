@@ -1,10 +1,12 @@
 extends Camera2D
+class_name Camera
 
 @export var max_distance: float = 850.0
 @export var smooth_speed: float = 12.0
 @export var mouse_weight: float = 0.2
 
 var target_offset: Vector2 = Vector2.ZERO
+var target_zoom: Vector2 = Vector2(1.0, 1.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position = position.lerp(target_offset, smooth_speed * delta)
+	zoom = zoom.lerp(target_zoom, smooth_speed * delta)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
