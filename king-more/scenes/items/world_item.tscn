@@ -2,15 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bms63f0fjm1cl" path="res://scenes/items/world_item.gd" id="1_7mscw"]
 [ext_resource type="Texture2D" uid="uid://ng1qxgsp7bwr" path="res://assets/sprites/items/basic_gun.png" id="2_7mscw"]
-[ext_resource type="PackedScene" uid="uid://c7qu7efu51dax" path="res://scenes/ui/item_preview.tscn" id="3_rm7n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mscw"]
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rm7n5"]
 size = Vector2(32, 32)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_75r5w"]
 
 [node name="World_item" type="RigidBody2D" unique_id=320915920 groups=["worlditem"]]
 collision_layer = 3
@@ -32,27 +29,6 @@ shape = SubResource("RectangleShape2D_7mscw")
 
 [node name="MouseAreaShape" type="CollisionShape2D" parent="MouseArea2D" unique_id=213180367]
 shape = SubResource("RectangleShape2D_rm7n5")
-
-[node name="Item_Preview" type="Control" parent="." unique_id=1573282438]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -80.0
-offset_top = -134.0
-offset_right = -40.0
-offset_bottom = -94.0
-
-[node name="Text" parent="Item_Preview" unique_id=1854170295 instance=ExtResource("3_rm7n5")]
-z_index = 1
-layout_mode = 1
-offset_right = -40.0
-offset_bottom = -40.0
-script = null
-
-[node name="Backdrop" type="TextureRect" parent="Item_Preview" unique_id=844829127]
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 87.0
-texture = SubResource("PlaceholderTexture2D_75r5w")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
