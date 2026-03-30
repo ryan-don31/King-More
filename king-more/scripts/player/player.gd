@@ -14,6 +14,7 @@ const SPEED = 300.0
 @export var debug: bool
 
 func _ready():
+	print("test")
 	inventory = Inventory.new()
 	
 func use():

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://i1tdabwipdib"]
-
-[ext_resource type="Script" uid="uid://b5wyjhc6wbnp0" path="res://scenes/levels/wave_spawner.gd" id="1_kqmrc"]
-
-[node name="Node" type="Node" unique_id=2111597040]
-script = ExtResource("1_kqmrc")

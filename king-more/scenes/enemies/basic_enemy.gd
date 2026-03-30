@@ -9,7 +9,7 @@ func _ready() -> void:
 	print(self, " enemy heating seeking: ", player)
 
 func _physics_process(delta: float) -> void:
-	# tries to chase the player if it e	xists
+	# tries to chase the player if it exists
 	if player:
 		var direction = global_position.direction_to(player.global_position)
 		
