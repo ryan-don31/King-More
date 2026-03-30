@@ -18,7 +18,6 @@ func use():
 	var item = inventory.selected_item
 	
 	if(item):
-		print(item)
 		var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
 		var dir = (get_global_mouse_position() - global_position).normalized()
 		projectile.global_position = global_position
@@ -26,9 +25,14 @@ func use():
 		get_tree().current_scene.add_child(projectile)
 
 func _process(_delta: float) -> void:
-	handle_debug()
-	check_inputs()
-	animate_item()
+	if(!UiManager.inventory_open):	
+		handle_debug()
+		check_inputs()
+		animate_item()
+
+		var direction = get_move_direction()
+		velocity = direction * SPEED
+		move_and_slide()
 
 func animate_item():
 	var mouse_pos = get_global_mouse_position()
@@ -50,13 +54,6 @@ func animate_item():
 	else:
 		item_pivot.scale.y = 1
 		player_sprite.scale.x = 0.5
-
-func _physics_process(_delta: float) -> void:
-	var direction = get_move_direction()
-	
-	velocity = direction * SPEED
-	
-	move_and_slide()
 
 func get_move_direction() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")

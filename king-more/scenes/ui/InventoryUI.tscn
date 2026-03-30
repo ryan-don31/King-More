@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://ddb2f7hgpp2n6"]
 
-[ext_resource type="Script" uid="uid://b1wit054phaps" path="res://scenes/ui/inventory_ui.gd" id="1_p0ay3"]
+[ext_resource type="Script" path="res://scenes/ui/inventory_ui.gd" id="1_p0ay3"]
+[ext_resource type="PackedScene" uid="uid://blbinno5eom7p" path="res://scenes/ui/inventory_slot.tscn" id="2_1r87s"]
 [ext_resource type="Texture2D" uid="uid://degnom34tpm73" path="res://assets/sprites/inventory/inventoryslot_select.png" id="2_jywan"]
+[ext_resource type="Texture2D" uid="uid://ng1qxgsp7bwr" path="res://assets/sprites/items/basic_gun.png" id="3_ufdhg"]
 
-[node name="InventoryUI" type="Control" unique_id=911866059 node_paths=PackedStringArray("slot_container", "highlight")]
+[node name="InventoryUI" type="Control" unique_id=911866059 node_paths=PackedStringArray("highlight")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,31 +13,110 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p0ay3")
-slot_container = NodePath("HBoxContainer")
-highlight = NodePath("Highlight")
+highlight = NodePath("EquippedSlots/Highlight")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=895736893]
+[node name="EquippedSlots" type="Control" parent="." unique_id=298787826]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 586.0
+offset_right = 72.0
+offset_bottom = 626.0
+
+[node name="EquippedContainer" type="GridContainer" parent="EquippedSlots" unique_id=1120850978]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
+columns = 5
 
-[node name="Slot0" type="TextureRect" parent="HBoxContainer" unique_id=986851733]
+[node name="Inventory_Slot" parent="EquippedSlots/EquippedContainer" unique_id=974315661 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
-[node name="Slot1" type="TextureRect" parent="HBoxContainer" unique_id=1143838741]
+[node name="Inventory_Slot2" parent="EquippedSlots/EquippedContainer" unique_id=1825006416 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
-[node name="Slot2" type="TextureRect" parent="HBoxContainer" unique_id=1440142265]
+[node name="Inventory_Slot3" parent="EquippedSlots/EquippedContainer" unique_id=1137108674 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
-[node name="Slot3" type="TextureRect" parent="HBoxContainer" unique_id=237805216]
+[node name="Inventory_Slot4" parent="EquippedSlots/EquippedContainer" unique_id=1108398447 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
-[node name="Slot4" type="TextureRect" parent="HBoxContainer" unique_id=950271371]
+[node name="Inventory_Slot5" parent="EquippedSlots/EquippedContainer" unique_id=1128290394 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
-[node name="Highlight" type="TextureRect" parent="." unique_id=1340993057]
+[node name="Highlight" type="TextureRect" parent="EquippedSlots" unique_id=1340993057]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("2_jywan")
+
+[node name="InventoryMenu" type="Control" parent="." unique_id=1716611313]
+anchors_preset = 0
+offset_left = 29.0
+offset_top = 37.0
+offset_right = 69.0
+offset_bottom = 77.0
+
+[node name="InventoryContainer" type="GridContainer" parent="InventoryMenu" unique_id=468979896]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+
+[node name="Inventory_Slot" parent="InventoryMenu/InventoryContainer" unique_id=1753583892 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot2" parent="InventoryMenu/InventoryContainer" unique_id=512398401 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot3" parent="InventoryMenu/InventoryContainer" unique_id=1226175484 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot4" parent="InventoryMenu/InventoryContainer" unique_id=1539747631 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot5" parent="InventoryMenu/InventoryContainer" unique_id=249297121 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot6" parent="InventoryMenu/InventoryContainer" unique_id=1480210984 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot7" parent="InventoryMenu/InventoryContainer" unique_id=171221031 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot8" parent="InventoryMenu/InventoryContainer" unique_id=293349457 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot9" parent="InventoryMenu/InventoryContainer" unique_id=803232711 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot10" parent="InventoryMenu/InventoryContainer" unique_id=1578367332 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot11" parent="InventoryMenu/InventoryContainer" unique_id=127685572 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot12" parent="InventoryMenu/InventoryContainer" unique_id=842300299 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot13" parent="InventoryMenu/InventoryContainer" unique_id=1460033566 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot14" parent="InventoryMenu/InventoryContainer" unique_id=104173770 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="Inventory_Slot15" parent="InventoryMenu/InventoryContainer" unique_id=1879036491 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
+[node name="DragPreview" type="Control" parent="." unique_id=1597034890]
+visible = false
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="DragPreview" unique_id=1229566267]
+layout_mode = 0
+offset_right = 134.0
+offset_bottom = 111.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ufdhg")

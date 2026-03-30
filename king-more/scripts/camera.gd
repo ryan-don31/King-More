@@ -14,7 +14,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = position.lerp(target_offset, smooth_speed * delta)
+	if(UiManager.inventory_open):
+		position = position.lerp(Vector2(0,0), smooth_speed * delta)
+	else:
+		position = position.lerp(target_offset, smooth_speed * delta)
+
 	zoom = zoom.lerp(target_zoom, smooth_speed * delta)
 
 func _unhandled_input(event: InputEvent) -> void:
