@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://yeujor60y4vo"]
+
+[ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="1_oh55q"]
+
+[node name="LightingShock" type="Node2D" unique_id=1738117615]
+
+[node name="final_point" type="Node2D" parent="." unique_id=271078589]
+
+[node name="Sprite2D" type="Sprite2D" parent="final_point" unique_id=219896588]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_oh55q")
+
+[node name="point_a" type="Node2D" parent="." unique_id=2063471090]
+
+[node name="Sprite2D" type="Sprite2D" parent="point_a" unique_id=554320578]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_oh55q")
+
+[node name="point_b" type="Node2D" parent="." unique_id=1005827814]
+
+[node name="Sprite2D" type="Sprite2D" parent="point_b" unique_id=1199821048]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_oh55q")

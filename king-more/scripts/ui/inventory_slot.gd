@@ -29,6 +29,7 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if get_global_rect().has_point(get_global_mouse_position()):
 		mouse_hovered = true
+
 	else:
 		mouse_hovered = false
 
@@ -37,8 +38,8 @@ func _on_mouse_entered() -> void:
 		inventory_ui_ref.item_info.visible = true
 		inventory_ui_ref.item_info.position = get_preview_position()
 		inventory_ui_ref.item_info.get_node("Item Name").text = item.name
-		inventory_ui_ref.item_info.get_node("Item Damage").text = str(item.damage)
-		inventory_ui_ref.item_info.get_node("Item Firerate").text = str(item.fire_rate)
+		inventory_ui_ref.item_info.get_node("Item Damage").text = "Damage: " + str(item.damage)
+		inventory_ui_ref.item_info.get_node("Item Firerate").text = "Fire Rate: " + str(item.fire_rate)
 
 func _on_mouse_exited() -> void:
 	inventory_ui_ref.item_info.visible = false
