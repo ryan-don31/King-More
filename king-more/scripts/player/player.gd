@@ -15,16 +15,24 @@ const SPEED = 300.0
 func _ready():
 	inventory = Inventory.new()
 	
+# USING ITEMS
 func use():
 	var item = inventory.selected_item
 	
 	if(item):
-		var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
-		var dir = (get_global_mouse_position() - global_position).normalized()
-		projectile.global_position = global_position
-		projectile.direction = dir
-		projectile.damage = inventory.selected_item.damage
-		get_tree().current_scene.add_child(projectile)
+		if(item.item_type == "basic"):
+			var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
+			var dir = (get_global_mouse_position() - global_position).normalized()
+			projectile.global_position = global_position
+			projectile.direction = dir
+			projectile.damage = inventory.selected_item.damage
+			get_tree().current_scene.add_child(projectile)
+		elif(item.item_type == "lightning"):
+			var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
+			projectile.global_position = global_position
+			projectile.target_pos = get_local_mouse_position()
+			projectile.damage = inventory.selected_item.damage
+			get_tree().current_scene.add_child(projectile)
 
 func _process(_delta: float) -> void:
 	if(!UiManager.inventory_open):	
