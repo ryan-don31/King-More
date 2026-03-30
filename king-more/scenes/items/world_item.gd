@@ -3,12 +3,26 @@ extends Node2D
 # This is the actual item you see on the floor in the world
 
 var item: ItemInstance
-var is_hovered: bool = false
+var player: CharacterBody2D = null
 
-@onready var item_preview: Control = $Item_Preview
+@export var pickup_range: float = 80.0
+@export var attract_range: float = 150.0
+@export var attract_speed: float = 300.0
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
-	if is_hovered and Input.is_action_just_pressed("interact"):
+	if player == null:
+		return
+
+	var distance = global_position.distance_to(player.global_position)
+
+	if distance < attract_range:
+		var direction = (player.global_position - global_position).normalized()
+		global_position += direction * attract_speed * _delta
+
+	if distance < pickup_range:
 		pickup()
 
 func pickup():
@@ -17,17 +31,3 @@ func pickup():
 	
 	if player and player.inventory.add_item(item):
 		queue_free()
-
-
-func _on_mouse_area_2d_mouse_entered() -> void:
-	print("Yep mouse entered")
-	is_hovered = true
-	item_preview.visible = true
-	modulate = Color(1, 1, 0.5)
-
-
-func _on_mouse_area_2d_mouse_exited() -> void:
-	print("Yep mouse exited")
-	is_hovered = false
-	item_preview.visible = false
-	modulate = Color(1, 1, 1)
