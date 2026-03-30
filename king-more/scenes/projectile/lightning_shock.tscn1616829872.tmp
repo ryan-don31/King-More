@@ -20,6 +20,7 @@ animations = [{
 
 [node name="LightningShock" type="Node2D" unique_id=1738117615]
 script = ExtResource("1_oipuv")
+damage = null
 
 [node name="final_point" type="Node2D" parent="." unique_id=271078589]
 
@@ -28,7 +29,7 @@ script = ExtResource("1_oipuv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="point_a" unique_id=575717381]
 scale = Vector2(0.1, 0.5)
 sprite_frames = SubResource("SpriteFrames_b3bou")
-frame_progress = 0.33511993
+frame_progress = 0.49917006
 
 [node name="point_b" type="Node2D" parent="." unique_id=1005827814]
 

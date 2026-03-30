@@ -7,14 +7,14 @@ extends Node2D
 @onready var point_b = $point_b
 @onready var final_point = $final_point
 
-@onready var start_sprite = $start_point/Sprite2D
-@onready var a_sprite = $point_a/Sprite2D
-@onready var b_sprite = $point_b/Sprite2D
-@onready var end_sprite = $final_point/Sprite2D
+@onready var start_sprite = $start_point/AnimatedSprite2D
+@onready var a_sprite = $point_a/AnimatedSprite2D
+@onready var b_sprite = $point_b/AnimatedSprite2D
 
 var target_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	var distance = position.distance_to(target_pos)
 	final_point.position = target_pos
 
 	# EVERYTHING in local space
@@ -25,7 +25,7 @@ func _ready() -> void:
 	var one_third := start_pos.lerp(end_pos, 1.0 / 3.0)
 	var two_third := start_pos.lerp(end_pos, 2.0 / 3.0)
 
-	var offset_range := 128.0
+	var offset_range: float = distance / 4
 
 	var a_pos := one_third + Vector2(
 		randf_range(-offset_range, offset_range),
@@ -41,8 +41,7 @@ func _ready() -> void:
 	_update_segment(a_pos, b_pos, a_sprite)
 	_update_segment(b_pos, end_pos, b_sprite)
 
-
-func _update_segment(a: Vector2, b: Vector2, sprite: Sprite2D) -> void:
+func _update_segment(a: Vector2, b: Vector2, sprite: AnimatedSprite2D) -> void:
 	var dir := b - a
 	var dist := dir.length()
 
@@ -58,7 +57,8 @@ func _update_segment(a: Vector2, b: Vector2, sprite: Sprite2D) -> void:
 	sprite.rotation = dir.angle()
 
 	# stretch along X axis
-	var tex_width := sprite.texture.get_width()
+	sprite.play("default")
+	var tex_width: float = sprite.sprite_frames.get_frame_texture("default", 0).get_width()
 	sprite.scale.x = dist / tex_width
 
 

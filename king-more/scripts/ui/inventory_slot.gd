@@ -46,7 +46,6 @@ func _on_mouse_exited() -> void:
 
 func get_preview_position() -> Vector2:
 	var finalpos = global_position
-	print(finalpos)
 	if(finalpos.x < 128):
 		finalpos.x = 0
 	else:

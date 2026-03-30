@@ -87,4 +87,8 @@ func handle_debug():
 		Debug.make_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
+		Debug.make_item2(get_global_mouse_position())
+		# Debug.zoom_camera(camera)
+
+	if Input.is_action_just_pressed("debug_3"):
 		Debug.zoom_camera(camera)
