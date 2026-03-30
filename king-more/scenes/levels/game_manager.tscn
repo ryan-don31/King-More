@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://i1tdabwipdib"]
+
+[ext_resource type="Script" uid="uid://b5wyjhc6wbnp0" path="res://scenes/levels/game_manager.gd" id="1_kqmrc"]
+
+[node name="Node" type="Node" unique_id=2111597040]
+script = ExtResource("1_kqmrc")
+
+[node name="Timer" type="Timer" parent="." unique_id=448963810]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
