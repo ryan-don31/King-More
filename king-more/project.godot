@@ -25,6 +25,7 @@ UiManager="*uid://bk5lib2nmg2dj"
 
 player=""
 worlditem=""
+enemies=""
 
 [input]
 
