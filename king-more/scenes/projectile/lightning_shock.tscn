@@ -29,6 +29,7 @@ script = ExtResource("1_oipuv")
 scale = Vector2(0.1, 0.5)
 sprite_frames = SubResource("SpriteFrames_b3bou")
 frame_progress = 0.33511993
+speed_scale = 0.0
 
 [node name="point_b" type="Node2D" parent="." unique_id=1005827814]
 
@@ -36,6 +37,7 @@ frame_progress = 0.33511993
 scale = Vector2(0.1, 0.5)
 sprite_frames = SubResource("SpriteFrames_b3bou")
 frame_progress = 0.5
+speed_scale = 0.0
 
 [node name="start_point" type="Node2D" parent="." unique_id=199264404]
 
@@ -43,6 +45,7 @@ frame_progress = 0.5
 scale = Vector2(0.1, 0.5)
 sprite_frames = SubResource("SpriteFrames_b3bou")
 frame_progress = 0.5
+speed_scale = 0.0
 
 [node name="Timer" type="Timer" parent="." unique_id=992021356]
 wait_time = 0.2

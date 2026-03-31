@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://bbec7r8eeoens"]
 
 [ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
-[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
-[ext_resource type="Script" uid="uid://dsmtdkeqgrvt" path="res://scripts/ui/inventory_ui.gd" id="3_xb4v1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
 
 [node name="level" type="Node2D" unique_id=1535586598]
-script = ExtResource("1_xb4v1")
 
 [node name="Backdrop" type="TextureRect" parent="." unique_id=1265593925]
 visible = false
@@ -20,6 +17,7 @@ offset_bottom = 1318.0
 texture = SubResource("PlaceholderTexture2D_2q6dc")
 
 [node name="Player" parent="." unique_id=1192430272 groups=["player"] instance=ExtResource("1_2q6dc")]
+position = Vector2(576, 324)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=142658751]
 
@@ -27,5 +25,4 @@ texture = SubResource("PlaceholderTexture2D_2q6dc")
 offset_right = -992.0
 offset_bottom = -616.0
 mouse_filter = 2
-script = ExtResource("3_xb4v1")
 player = NodePath("../../Player")
