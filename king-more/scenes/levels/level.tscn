@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dutu4qcqwxjtp" path="res://scenes/levels/level.gd" id="1_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://i1tdabwipdib" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
+[ext_resource type="Texture2D" uid="uid://dtt3vtqs0h06i" path="res://assets/sprites/enemies/Dark_Gothic_Castle_Sprite.png" id="4_d4w6o"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
@@ -29,14 +30,23 @@ player = NodePath("../../Player")
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1184092214]
 
-[node name="SpawnPoint1" type="Marker2D" parent="SpawnPoints" unique_id=82742496]
+[node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=283087761]
 position = Vector2(-185, 476)
 
-[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" unique_id=2131624153]
+[node name="Sprite2D" type="Sprite2D" parent="SpawnPoints/SpawnPoint1" unique_id=1141490614]
+texture = ExtResource("4_d4w6o")
+
+[node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=2000455125]
 position = Vector2(986, -143)
 
-[node name="SpawnPoint3" type="Marker2D" parent="SpawnPoints" unique_id=2043715209]
+[node name="Sprite2D" type="Sprite2D" parent="SpawnPoints/SpawnPoint2" unique_id=389349329]
+texture = ExtResource("4_d4w6o")
+
+[node name="SpawnPoint3" type="Node2D" parent="SpawnPoints" unique_id=1956049234]
 position = Vector2(1336, 761)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpawnPoints/SpawnPoint3" unique_id=1710347441]
+texture = ExtResource("4_d4w6o")
 
 [node name="GameManager" parent="." unique_id=2111597040 node_paths=PackedStringArray("spawn_points_container") instance=ExtResource("3_xb4v1")]
 enemy_scene = ExtResource("4_xb4v1")

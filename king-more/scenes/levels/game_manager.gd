@@ -17,8 +17,8 @@ func _ready() -> void:
 		push_error("No spawn_points container detected!")
 	
 	if timer:
+		call_deferred("spawn_wave")
 		timer.start()
-		spawn_wave()
 		current_wave += 1
 	else:
 		print("No timer found")
@@ -74,7 +74,7 @@ func spawn_wave() -> void:
 			if enemy_scene:
 				var enemy = enemy_scene.instantiate()
 				# Add a tiny random offset so enemies spawning at the same marker on the same frame don't perfectly overlap and merge into one sprite.
-				var random_offset = Vector2(randf_range(-15, 15), randf_range(-15, 15))
+				var random_offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
 				enemy.global_position = point_position + random_offset
 				get_tree().current_scene.add_child(enemy)
 				enemies_actually_spawned += 1
