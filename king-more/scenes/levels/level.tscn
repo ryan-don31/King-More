@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
+[ext_resource type="PackedScene" uid="uid://cvaljr0bke11a" path="res://scenes/ui/player_status.tscn" id="3_urvlt"]
 [ext_resource type="PackedScene" uid="uid://i1tdabwipdib" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
 
@@ -28,6 +29,8 @@ offset_right = -992.0
 offset_bottom = -616.0
 mouse_filter = 2
 player = NodePath("../../Player")
+
+[node name="PlayerStatus" parent="CanvasLayer" unique_id=810138455 instance=ExtResource("3_urvlt")]
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1184092214]
 
