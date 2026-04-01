@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddb2f7hgpp2n6"]
 
-[ext_resource type="Script" uid="uid://dsmtdkeqgrvt" path="res://scripts/ui/inventory_ui.gd" id="1_xbxri"]
+[ext_resource type="Script" uid="uid://dsmtdkeqgrvt" path="res://scripts/ui/inventory_ui.gd" id="1_1r87s"]
 [ext_resource type="PackedScene" uid="uid://blbinno5eom7p" path="res://scenes/ui/inventory_slot.tscn" id="2_1r87s"]
 [ext_resource type="Texture2D" uid="uid://degnom34tpm73" path="res://assets/sprites/inventory/inventoryslot_select.png" id="2_jywan"]
 [ext_resource type="Texture2D" uid="uid://ng1qxgsp7bwr" path="res://assets/sprites/items/basic_gun.png" id="3_ufdhg"]
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xbxri")
+script = ExtResource("1_1r87s")
 
 [node name="EquippedSlots" type="Control" parent="." unique_id=298787826]
 anchors_preset = 0
