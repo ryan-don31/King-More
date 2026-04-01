@@ -7,6 +7,7 @@ const SPEED = 300.0
 @onready var camera = $Camera2D
 @onready var player_sprite = $PlayerSprite
 @onready var item_sprite = $ItemPivot/ItemSprite
+@onready var use_cooldown = $UseCooldown
 
 # Inventory/equipment stuff
 @export var inventory: Inventory # Player's inventory
@@ -15,15 +16,24 @@ func _ready():
 	print("test")
 	inventory = Inventory.new()
 	
+# USING ITEMS
 func use():
 	var item = inventory.selected_item
 	
 	if(item):
-		var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
-		var dir = (get_global_mouse_position() - global_position).normalized()
-		projectile.global_position = global_position
-		projectile.direction = dir
-		get_tree().current_scene.add_child(projectile)
+		if(item.item_type == "basic"):
+			var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
+			var dir = (get_global_mouse_position() - global_position).normalized()
+			projectile.global_position = global_position
+			projectile.direction = dir
+			projectile.damage = inventory.selected_item.damage
+			get_tree().current_scene.add_child(projectile)
+		elif(item.item_type == "lightning"):
+			var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
+			projectile.global_position = global_position
+			projectile.target_pos = get_local_mouse_position()
+			projectile.damage = inventory.selected_item.damage
+			get_tree().current_scene.add_child(projectile)
 
 func _process(_delta: float) -> void:
 	if(!UiManager.inventory_open):	
@@ -66,13 +76,20 @@ func check_inputs():
 		inventory.slot_change(-1)
 	if Input.is_action_just_pressed("scroll_down"):
 		inventory.slot_change(1)
-		
-	if Input.is_action_just_pressed("use"):
+
+	if Input.is_action_pressed("use") and inventory.selected_item and use_cooldown.is_stopped():
+		use_cooldown.start(inventory.selected_item.fire_rate)
 		use()
+
+
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
 		Debug.make_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
+		Debug.make_item2(get_global_mouse_position())
+		# Debug.zoom_camera(camera)
+
+	if Input.is_action_just_pressed("debug_3"):
 		Debug.zoom_camera(camera)

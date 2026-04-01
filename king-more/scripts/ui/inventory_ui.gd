@@ -8,6 +8,7 @@ extends Control
 @onready var equipped_slot_container: GridContainer = $EquippedSlots/EquippedContainer
 @onready var highlight: TextureRect = $EquippedSlots/Highlight
 @onready var drag_preview: Control = $DragPreview
+@onready var item_info: Control = $ItemInfo
 
 var inventory: Inventory
 var equpped_slot_nodes: Array[Node] = []
