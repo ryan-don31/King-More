@@ -23,7 +23,7 @@ position = Vector2(576, 324)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=142658751]
 
-[node name="InventoryUI" parent="CanvasLayer" unique_id=911866059 instance=ExtResource("3_b2cq8")]
+[node name="InventoryUI" parent="CanvasLayer" unique_id=911866059 node_paths=PackedStringArray("player") instance=ExtResource("3_b2cq8")]
 offset_right = -992.0
 offset_bottom = -616.0
 mouse_filter = 2
