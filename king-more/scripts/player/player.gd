@@ -13,6 +13,7 @@ const SPEED = 300.0
 @export var inventory: Inventory # Player's inventory
 
 func _ready():
+	print("test")
 	inventory = Inventory.new()
 	
 # USING ITEMS
