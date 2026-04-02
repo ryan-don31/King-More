@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://i1tdabwipdib" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://dtt3vtqs0h06i" path="res://assets/sprites/enemies/Dark_Gothic_Castle_Sprite.png" id="4_d4w6o"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
+[ext_resource type="PackedScene" uid="uid://dt2er0ob7rgly" path="res://scenes/enemies/range_enemy.tscn" id="7_mbbpy"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2q6dc"]
 
@@ -50,4 +51,5 @@ texture = ExtResource("4_d4w6o")
 
 [node name="GameManager" parent="." unique_id=2111597040 node_paths=PackedStringArray("spawn_points_container") instance=ExtResource("3_xb4v1")]
 enemy_scene = ExtResource("4_xb4v1")
+ranged_enemy_scene = ExtResource("7_mbbpy")
 spawn_points_container = NodePath("../SpawnPoints")

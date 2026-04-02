@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 
-@export var speed: float = 50.0
-@export var max_health: float = 30 
-@export var spawn_duration: float = 1.5
-@export var seperation_radius: float = 80.0
-@export var seperation_strength: float = 200.0
+@export var speed: float = 50.0                   # chase speed toward the player (pixels/sec)
+@export var max_health: float = 30                 # starting HP — dies at 0
+@export var spawn_duration: float = 1.5            # flicker duration before becoming active (seconds)
+@export var seperation_radius: float = 80.0        # distance at which nearby enemies start pushing away (pixels)
+@export var seperation_strength: float = 200.0     # how hard enemies push away from each other
 
 var player: Node2D
 var current_health: int
