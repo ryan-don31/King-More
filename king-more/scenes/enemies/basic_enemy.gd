@@ -22,6 +22,11 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func take_damage(amount: float) -> void:
+	var damage_indicator = preload("res://scenes/ui/damage_indicator.tscn").instantiate()
+	damage_indicator.global_position = global_position
+	damage_indicator.damage = str(amount)
+	get_tree().current_scene.add_child(damage_indicator)
+
 	current_health -= amount
 	print(self, " took ", amount, "damage! HP is ", current_health, '/', max_health)
 	if current_health <= 0:
@@ -31,4 +36,3 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print(self, " hit the player!")
 		player.take_damage(10.0)
-

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://byxqdlhsbo724"]
+
+[ext_resource type="Script" uid="uid://bs3ycewpwk18x" path="res://scripts/ui/damage_indicator.gd" id="1_rqk2v"]
+
+[node name="DamageIndicator" type="Control" unique_id=387460138]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rqk2v")
+
+[node name="Label" type="Label" parent="." unique_id=80098522]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
