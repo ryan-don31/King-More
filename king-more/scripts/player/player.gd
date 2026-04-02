@@ -9,11 +9,15 @@ const SPEED = 300.0
 @onready var item_sprite = $ItemPivot/ItemSprite
 @onready var use_cooldown = $UseCooldown
 
+@export var max_health: float = 100.0
+var health: float = 100.0
+
+var invincible_timer = 0.0
+
 # Inventory/equipment stuff
-@export var inventory: Inventory # Player's inventory
+var inventory: Inventory # Player's inventory
 
 func _ready():
-	print("test")
 	inventory = Inventory.new()
 	
 # USING ITEMS
@@ -36,6 +40,8 @@ func use():
 			get_tree().current_scene.add_child(projectile)
 
 func _process(_delta: float) -> void:
+	check_invincible()
+
 	if(!UiManager.inventory_open):	
 		handle_debug()
 		check_inputs()
@@ -81,7 +87,17 @@ func check_inputs():
 		use_cooldown.start(inventory.selected_item.fire_rate)
 		use()
 
+func take_damage(damage: float):
+	if(invincible_timer <= 0.0):
+		health -= damage
+		invincible_timer = 50.0
 
+func check_invincible():
+	if(invincible_timer > 0.0):
+		invincible_timer -= 1.0
+		modulate.a = 0.5
+	else:
+		modulate.a = 1.0
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):

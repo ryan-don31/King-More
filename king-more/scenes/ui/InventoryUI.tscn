@@ -17,10 +17,10 @@ script = ExtResource("1_1r87s")
 
 [node name="EquippedSlots" type="Control" parent="." unique_id=298787826]
 anchors_preset = 0
-offset_left = 456.0
-offset_top = 586.0
-offset_right = 496.0
-offset_bottom = 626.0
+offset_left = 32.0
+offset_top = 568.0
+offset_right = 72.0
+offset_bottom = 608.0
 
 [node name="EquippedContainer" type="GridContainer" parent="EquippedSlots" unique_id=1120850978]
 custom_minimum_size = Vector2(32, 32)
@@ -52,10 +52,10 @@ texture = ExtResource("2_jywan")
 
 [node name="InventoryMenu" type="Control" parent="." unique_id=1716611313]
 anchors_preset = 0
-offset_left = 722.0
-offset_top = 494.0
-offset_right = 762.0
-offset_bottom = 534.0
+offset_left = 32.0
+offset_top = 436.0
+offset_right = 72.0
+offset_bottom = 476.0
 
 [node name="InventoryContainer" type="GridContainer" parent="InventoryMenu" unique_id=468979896]
 layout_mode = 0

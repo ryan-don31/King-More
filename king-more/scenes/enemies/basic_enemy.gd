@@ -29,8 +29,6 @@ func take_damage(amount: float) -> void:
 	
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		# placeholder, something like
-		# body.take_damage(10) # not implemented yet
 		print(self, " hit the player!")
-		# despawning rn to save space but change this body logic later
-		#queue_free()
+		player.take_damage(10.0)
+
