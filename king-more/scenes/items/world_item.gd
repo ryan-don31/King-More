@@ -25,9 +25,6 @@ func _process(_delta):
 	if distance < pickup_range:
 		pickup()
 
-func pickup():
-	#TODO: Refactor this it's really lame
-	var player = get_tree().get_first_node_in_group("player")
-	
+func pickup():	
 	if player and player.inventory.add_item(item):
 		queue_free()
