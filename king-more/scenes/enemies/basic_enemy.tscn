@@ -10,7 +10,8 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=256405706 groups=["enemies"]]
-collision_layer = 4
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_8xi43")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=977948177]
@@ -22,9 +23,9 @@ scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_he4gj")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1014044351]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1546305796]
-visible = false
 shape = SubResource("RectangleShape2D_i3qac")
 debug_color = Color(0.9925882, 0, 0.2563575, 0.41960785)
 
