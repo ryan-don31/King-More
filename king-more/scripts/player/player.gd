@@ -8,6 +8,7 @@ const SPEED = 300.0
 @onready var player_sprite = $PlayerSprite
 @onready var item_sprite = $ItemPivot/ItemSprite
 @onready var use_cooldown = $UseCooldown
+@onready var player_status_control = $PlayerStatusControl
 
 @export var max_health: float = 100.0
 var health: float = 100.0
@@ -50,6 +51,8 @@ func use():
 
 func _process(_delta: float) -> void:
 	check_invincible()
+
+	render_cooldown_bar()
 
 	if(!UiManager.inventory_open):	
 		handle_debug()
@@ -94,6 +97,7 @@ func check_inputs():
 
 	if Input.is_action_pressed("use") and inventory.selected_item and use_cooldown.is_stopped():
 		use_cooldown.start(inventory.selected_item.fire_rate)
+		player_status_control.reload_max = inventory.selected_item.fire_rate
 		use()
 
 func take_damage(damage: float):
@@ -107,6 +111,9 @@ func check_invincible():
 		modulate.a = 0.5
 	else:
 		modulate.a = 1.0
+
+func render_cooldown_bar():
+	player_status_control.reload_value = use_cooldown.time_left
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
