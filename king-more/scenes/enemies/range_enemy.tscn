@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0hiyulhejgb6" path="res://scenes/enemies/range_enemy.gd" id="1_hd8ja"]
 [ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="2_yu3an"]
+[ext_resource type="PackedScene" uid="uid://bjf5ja6gj3kfw" path="res://scenes/ui/enemy_health.tscn" id="3_yu3an"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_342vm"]
 size = Vector2(32, 32)
@@ -10,7 +11,8 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="RangeEnemy" type="CharacterBody2D" unique_id=2131706125 groups=["enemies"]]
-collision_layer = 4
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_hd8ja")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1101896038]
@@ -26,5 +28,10 @@ shape = SubResource("RectangleShape2D_342vm")
 scale = Vector2(1.25, 1.25)
 shape = SubResource("RectangleShape2D_hd8ja")
 debug_color = Color(0.9075352, 0.23597682, 0.48337275, 0.41960785)
+
+[node name="EnemyHealth" parent="." unique_id=1765253329 node_paths=PackedStringArray("enemy") instance=ExtResource("3_yu3an")]
+offset_top = 26.0
+offset_bottom = 26.0
+enemy = NodePath("..")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

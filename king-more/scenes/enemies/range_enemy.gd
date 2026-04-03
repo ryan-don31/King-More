@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var attack_radius: float = 300.0           # distance at which enemy stops chasing and starts strafing + shooting (pixels)
 
 ## Combat
-@export var max_health: int = 20                   # starting HP — dies at 0
+@export var max_health: int = 300                   # starting HP — dies at 0
 @export var fire_rate: float = 2.0                 # seconds between shots while in attack range
 @export var aim_spread: float = 0.3                # aiming accuracy in radians (0.0 = perfect, 0.3 = slight wobble, 0.8+ = very inaccurate)
 
@@ -23,7 +23,9 @@ var spawning: bool = true
 var fire_cooldown: float = 0.0
 var strafe_direction: int = 1
 
-const PROJECTILE_SCENE = preload("res://scenes/projectile/projectile.tscn")
+signal health_changed
+
+const PROJECTILE_SCENE = preload("res://scenes/projectile/enemy_projectile.tscn")
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -89,10 +91,20 @@ func _fire_at_player(to_player: Vector2) -> void:
 	get_tree().current_scene.add_child(projectile)
 
 func take_damage(amount: int) -> void:
+	var damage_indicator = preload("res://scenes/ui/damage_indicator.tscn").instantiate()
+	damage_indicator.global_position = global_position
+	damage_indicator.damage = str(amount)
+	get_tree().current_scene.add_child(damage_indicator)
+
 	if spawning:
 		return
+
 	current_health -= amount
+
 	print(self, " took ", amount, " damage! HP: ", current_health, "/", max_health)
+
+	health_changed.emit()
+
 	if current_health <= 0:
 		print(self, " died!")
 		queue_free()
