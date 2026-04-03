@@ -12,7 +12,7 @@ extends CharacterBody2D
 signal health_changed
 
 var player: Node2D
-var current_health: int
+var current_health: float
 var spawning := true
 
 func _ready() -> void:
