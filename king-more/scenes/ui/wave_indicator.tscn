@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://thvxeue36cdr"]
+
+[node name="WaveIndicator" type="Control" unique_id=1373206567]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Current Wave" type="Label" parent="." unique_id=21880558]
+layout_mode = 0
+offset_left = 517.0
+offset_top = 14.0
+offset_right = 641.0
+offset_bottom = 37.0
+text = "Current Wave: 0"
+
+[node name="Countdown" type="Label" parent="." unique_id=1087739543]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 128.0
+offset_right = 682.0
+offset_bottom = 151.0
+text = "Next Wave Starting In 0s..."

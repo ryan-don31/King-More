@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b0wuh4scn22mt"]
+
+[ext_resource type="Script" uid="uid://fa33vbp1rh5w" path="res://scripts/entities/enemy_projectile.gd" id="1_64552"]
+[ext_resource type="Texture2D" uid="uid://duat4hemwhe7x" path="res://assets/sprites/projectile/enemy1.png" id="1_chxym"]
+[ext_resource type="Texture2D" uid="uid://b7hx2a24i8hj2" path="res://assets/sprites/projectile/enemy2.png" id="2_64552"]
+[ext_resource type="Texture2D" uid="uid://b507ek6ep7jnk" path="res://assets/sprites/projectile/enemy3.png" id="3_re7pe"]
+[ext_resource type="Texture2D" uid="uid://bt8n0gyv88e" path="res://assets/sprites/projectile/enemy_hit1.png" id="5_kmiir"]
+[ext_resource type="Texture2D" uid="uid://c50lulcbpt3ac" path="res://assets/sprites/projectile/enemy_hit2.png" id="6_dn8jc"]
+[ext_resource type="Texture2D" uid="uid://di0qsww3e4m84" path="res://assets/sprites/projectile/enemy_hit3.png" id="7_4ul7i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b70vk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_chxym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_64552")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_re7pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_64552")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kmiir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dn8jc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4ul7i")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmiir"]
+radius = 19.0
+
+[node name="EnemyProjectile" type="Node2D" unique_id=472657914]
+script = ExtResource("1_64552")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1433558578]
+sprite_frames = SubResource("SpriteFrames_b70vk")
+animation = &"hit"
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=506421251]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=920669340]
+shape = SubResource("CircleShape2D_kmiir")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

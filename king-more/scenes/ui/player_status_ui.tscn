@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://io5b8dinojse"]
+[gd_scene format=3 uid="uid://babssevuv0b6w"]
 
-[ext_resource type="Script" uid="uid://bwf5rqomnrnp5" path="res://scripts/ui/player_status_ui.gd" id="1_514jd"]
+[ext_resource type="Script" path="res://scripts/ui/player_status_ui.gd" id="1_514jd"]
 
 [node name="PlayerStatusUI" type="Control" unique_id=810138455]
 layout_mode = 3
@@ -8,7 +8,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_514jd")
-metadata/_edit_horizontal_guides_ = [600.0]
+metadata/_edit_horizontal_guides_ = [72.0]
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=414362262]
 layout_mode = 0
@@ -17,7 +17,7 @@ offset_top = 614.0
 offset_right = 506.0
 offset_bottom = 641.0
 
-[node name="Label" type="Label" parent="." unique_id=109110409]
+[node name="HP Label" type="Label" parent="." unique_id=109110409]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 615.0

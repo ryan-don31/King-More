@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://daggxoj8ganf6" path="res://scenes/enemies/basic_enemy.gd" id="1_8xi43"]
 [ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="2_ibjif"]
+[ext_resource type="PackedScene" uid="uid://bjf5ja6gj3kfw" path="res://scenes/ui/enemy_health.tscn" id="3_ibjif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_he4gj"]
 size = Vector2(32, 32)
@@ -28,5 +29,10 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1546305796]
 shape = SubResource("RectangleShape2D_i3qac")
 debug_color = Color(0.9925882, 0, 0.2563575, 0.41960785)
+
+[node name="EnemyHealth" parent="." unique_id=1765253329 node_paths=PackedStringArray("enemy") instance=ExtResource("3_ibjif")]
+offset_top = 26.0
+offset_bottom = 26.0
+enemy = NodePath("..")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
