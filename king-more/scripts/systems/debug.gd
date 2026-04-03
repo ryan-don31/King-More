@@ -4,8 +4,8 @@ var rng = RandomNumberGenerator.new()
 
 func make_item(mouse_pos: Vector2):
 	var dropped_item = ItemInstance.new()
-	dropped_item.name = "Basic Weapon"
-	dropped_item.item_type = "basic"
+	dropped_item.name = "Plasma Weapon"
+	dropped_item.item_type = "plasma_ring"
 	dropped_item.damage = snapped(rng.randf_range(50, 100), 0.01)
 	dropped_item.fire_rate = snapped(rng.randf_range(0.05, 1), 0.01)
 	
