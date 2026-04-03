@@ -26,7 +26,10 @@ var current_wave: int = 0
 var enemies_alive: int = 0
 var waiting_for_next_wave: bool = false
 
+
 func _ready() -> void:
+	GameState.is_transitioning = false
+	GameState.total_waves = max_waves
 	if not enemy_scene:
 		push_error("Enemy scene is empty!")
 		return
@@ -39,8 +42,10 @@ func _ready() -> void:
 
 func _start_next_wave() -> void:
 	current_wave += 1
+	GameState.waves_survived = current_wave - 1 
 	if current_wave > max_waves:
-		print("All waves defeated!")
+		print("All waves defeated!") # this might be redundant but im afraid to remove it
+		GameState.win()
 		return
 	waiting_for_next_wave = false
 	_spawn_wave()
@@ -100,12 +105,15 @@ func _spawn_wave() -> void:
 			enemies_alive += 1
 
 func _on_enemy_died() -> void:
+	if GameState.is_transitioning:
+		return
 	enemies_alive -= 1
 	if enemies_alive <= 0 and not waiting_for_next_wave:
 		waiting_for_next_wave = true
-		print("Wave ", current_wave, " cleared!")
+		print("Wave ", current_wave, " cleared! Max: ", max_waves)
 		if current_wave >= max_waves:
 			print("All waves defeated!")
+			GameState.win()
 			return
 		print("Next wave in ", cooldown_between_waves, "s...")
 		timer.start(cooldown_between_waves)
