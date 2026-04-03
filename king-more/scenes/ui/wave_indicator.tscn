@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://thvxeue36cdr"]
 
+[ext_resource type="Script" uid="uid://bl6u0ws7afh28" path="res://scenes/ui/wave_indicator.gd" id="1_slsw4"]
+
 [node name="WaveIndicator" type="Control" unique_id=1373206567]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_slsw4")
 
 [node name="Current Wave" type="Label" parent="." unique_id=21880558]
 layout_mode = 0
@@ -14,7 +17,6 @@ offset_left = 517.0
 offset_top = 14.0
 offset_right = 641.0
 offset_bottom = 37.0
-text = "Current Wave: 0"
 
 [node name="Countdown" type="Label" parent="." unique_id=1087739543]
 layout_mode = 0

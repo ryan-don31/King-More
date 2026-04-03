@@ -32,10 +32,19 @@ func use():
 			projectile.direction = dir
 			projectile.damage = inventory.selected_item.damage
 			get_tree().current_scene.add_child(projectile)
+
 		elif(item.item_type == "lightning"):
 			var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
 			projectile.global_position = global_position
 			projectile.target_pos = get_local_mouse_position()
+			projectile.damage = inventory.selected_item.damage
+			get_tree().current_scene.add_child(projectile)
+
+		elif(item.item_type == "plasma_ring"):
+			var projectile = preload("res://scenes/projectile/plasma_ring.tscn").instantiate()
+			var dir = (get_global_mouse_position() - global_position).normalized()
+			projectile.global_position = global_position
+			projectile.direction = dir
 			projectile.damage = inventory.selected_item.damage
 			get_tree().current_scene.add_child(projectile)
 

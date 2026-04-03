@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://babssevuv0b6w" path="res://scenes/ui/player_status_ui.tscn" id="3_urvlt"]
-[ext_resource type="PackedScene" uid="uid://i1tdabwipdib" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
+[ext_resource type="PackedScene" uid="uid://ci6g0va4xyobu" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://dtt3vtqs0h06i" path="res://assets/sprites/enemies/Dark_Gothic_Castle_Sprite.png" id="4_d4w6o"]
 [ext_resource type="PackedScene" uid="uid://thvxeue36cdr" path="res://scenes/ui/wave_indicator.tscn" id="4_ouxo3"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
@@ -38,8 +38,9 @@ metadata/_edit_use_anchors_ = true
 player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
 
-[node name="WaveIndicator" parent="CanvasLayer" unique_id=1373206567 instance=ExtResource("4_ouxo3")]
+[node name="WaveIndicator" parent="CanvasLayer" unique_id=1373206567 node_paths=PackedStringArray("game_manager") instance=ExtResource("4_ouxo3")]
 mouse_filter = 2
+game_manager = NodePath("../../GameManager")
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=1184092214]
 
@@ -65,6 +66,3 @@ texture = ExtResource("4_d4w6o")
 enemy_scene = ExtResource("4_xb4v1")
 ranged_enemy_scene = ExtResource("7_mbbpy")
 spawn_points_container = NodePath("../SpawnPoints")
-ranged_enemy_wave_start = 1
-ranged_enemy_percentage = 1.0
-grace_period = 1.0
