@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var attack_radius: float = 300.0           # distance at which enemy stops chasing and starts strafing + shooting (pixels)
 
 ## Combat
-@export var max_health: int = 300                   # starting HP — dies at 0
+@export var max_health: float = 300                   # starting HP — dies at 0
 @export var fire_rate: float = 2.0                 # seconds between shots while in attack range
 @export var aim_spread: float = 0.3                # aiming accuracy in radians (0.0 = perfect, 0.3 = slight wobble, 0.8+ = very inaccurate)
 
@@ -18,7 +18,7 @@ extends CharacterBody2D
 @export var separation_strength: float = 80.0      # how hard enemies push away from each other
 
 var player: Node2D
-var current_health: int
+var current_health: float
 var spawning: bool = true
 var fire_cooldown: float = 0.0
 var strafe_direction: int = 1
