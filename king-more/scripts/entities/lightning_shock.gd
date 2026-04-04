@@ -111,6 +111,5 @@ func _on_timer_timeout() -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.take_damage(damage)
-		print("DELETED...")
 		final_point.queue_free()
 

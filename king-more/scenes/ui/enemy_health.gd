@@ -16,5 +16,4 @@ func _process(delta: float) -> void:
 func update():
 	progress_bar.visible = true
 	progress_bar.value = (enemy.current_health / enemy.max_health)
-	print("PROGRESS BAR VALUE: ", progress_bar.value)
 	opacity = 3.0

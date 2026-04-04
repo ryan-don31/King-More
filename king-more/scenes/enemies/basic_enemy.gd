@@ -12,13 +12,12 @@ extends CharacterBody2D
 signal health_changed
 
 var player: Node2D
-var current_health: int
+var current_health: float
 var spawning := true
 
 func _ready() -> void:
 	_start_spawn_process()
 	player = get_tree().get_first_node_in_group("player")
-	print(self, " enemy heating seeking: ", player)
 	
 
 func _start_spawn_process():
@@ -69,8 +68,6 @@ func take_damage(amount: float) -> void:
 
 	current_health -= amount
 
-	print(self, " took ", amount, "damage! HP is ", current_health, '/', max_health)
-
 	health_changed.emit()
 
 	if current_health <= 0:
@@ -78,5 +75,4 @@ func take_damage(amount: float) -> void:
 	
 func _on_hit_box_body_entered(body: Node2D) -> 	void:
 	if body.is_in_group("player"):
-		print(self, " hit the player!")
 		player.take_damage(10.0)

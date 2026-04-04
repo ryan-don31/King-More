@@ -22,7 +22,7 @@ var selected_slot: int = 0
 var selected_item: ItemInstance = null
 
 var from_type: SlotType
-var from_index: int
+var from_index: int = -1
 
 # Make sure the slots is limited to the current max size
 func _init():

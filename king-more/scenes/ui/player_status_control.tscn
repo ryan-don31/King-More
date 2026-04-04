@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://djdj8hfwlhblv"]
+
+[ext_resource type="Script" uid="uid://c0sxekdgu4uqg" path="res://scripts/ui/player_status_control.gd" id="1_8gn0k"]
+[ext_resource type="Texture2D" uid="uid://cdwme3v2aeoix" path="res://assets/sprites/ui/statusbars/generic_adjustable/statusbar_under.png" id="1_41vqf"]
+[ext_resource type="Texture2D" uid="uid://dqgfy3iowu2i8" path="res://assets/sprites/ui/statusbars/generic_adjustable/statusbar_progress.png" id="2_8gn0k"]
+
+[node name="PlayerStatusControl" type="Control" unique_id=340326014]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8gn0k")
+
+[node name="ReloadIndicator" type="TextureProgressBar" parent="." unique_id=519849119]
+layout_mode = 0
+offset_left = -64.0
+offset_right = 192.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+max_value = 1.0
+step = 0.01
+texture_under = ExtResource("1_41vqf")
+texture_progress = ExtResource("2_8gn0k")
