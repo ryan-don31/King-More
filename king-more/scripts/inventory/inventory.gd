@@ -5,14 +5,17 @@ class_name Inventory
 
 signal inventory_changed
 
+const CROWN_SLOTS = 1
 const EQUIP_SLOTS = 5
 const INV_SLOTS = 15
 
 enum SlotType {
+	CROWNS,
 	INVENTORY,
 	EQUIPMENT
 }
 
+var crown_slots: = []
 var equipped_slots: = []
 var inventory_slots: = []
 
@@ -26,6 +29,7 @@ var from_index: int = -1
 
 # Make sure the slots is limited to the current max size
 func _init():
+	crown_slots.resize(CROWN_SLOTS)
 	equipped_slots.resize(EQUIP_SLOTS)
 	inventory_slots.resize(INV_SLOTS)
 	
@@ -40,6 +44,8 @@ func add_item(item: ItemInstance) -> bool:
 	
 func _get_array(type: SlotType) -> Array:
 	match type:
+		SlotType.CROWNS:
+			return crown_slots
 		SlotType.INVENTORY:
 			return inventory_slots
 		SlotType.EQUIPMENT:

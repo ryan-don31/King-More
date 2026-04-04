@@ -110,6 +110,22 @@ layout_mode = 2
 [node name="Inventory_Slot15" parent="InventoryMenu/InventoryContainer" unique_id=1879036491 instance=ExtResource("2_1r87s")]
 layout_mode = 2
 
+[node name="CrownSlots" type="Control" parent="." unique_id=542512209]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CrownSlotsContainer" type="GridContainer" parent="CrownSlots" unique_id=1264277041]
+visible = false
+layout_mode = 0
+offset_left = 240.0
+offset_top = 436.0
+offset_right = 280.0
+offset_bottom = 476.0
+
+[node name="Inventory_Slot" parent="CrownSlots/CrownSlotsContainer" unique_id=538194086 instance=ExtResource("2_1r87s")]
+layout_mode = 2
+
 [node name="DragPreview" type="Control" parent="." unique_id=1597034890]
 visible = false
 anchors_preset = 0
