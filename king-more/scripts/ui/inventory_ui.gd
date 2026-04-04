@@ -57,7 +57,7 @@ func update_ui():
 		slot.slot_type = SlotType.EQUIPMENT
 		slot.inventory_ref = inventory
 		slot.inventory_ui_ref = self
-		slot.item = item
+		slot.set_item(item)
 
 	# 15 INVENTORY SLOTS
 	for i in range(inventory_slot_nodes.size()):
@@ -77,4 +77,4 @@ func update_ui():
 		slot.slot_type = SlotType.INVENTORY
 		slot.inventory_ref = inventory
 		slot.inventory_ui_ref = self
-		slot.item = item
+		slot.set_item(item)

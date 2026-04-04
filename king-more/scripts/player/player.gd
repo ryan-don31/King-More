@@ -33,12 +33,14 @@ func use():
 			projectile.direction = dir
 			projectile.damage = inventory.selected_item.damage
 			get_tree().current_scene.add_child(projectile)
+
 		ItemTypes.WeaponType.LIGHTNING:
 			var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
 			projectile.global_position = global_position
 			projectile.target_pos = get_local_mouse_position()
 			projectile.damage = inventory.selected_item.damage
 			get_tree().current_scene.add_child(projectile)
+			
 		ItemTypes.WeaponType.PLASMA:
 			var projectile = preload("res://scenes/projectile/plasma_ring.tscn").instantiate()
 			var dir = (get_global_mouse_position() - global_position).normalized()
@@ -50,7 +52,8 @@ func use():
 func _process(_delta: float) -> void:
 	check_invincible()
 
-	render_cooldown_bar()
+	if(inventory.selected_item):
+		render_cooldown_bar()
 
 	if(!UiManager.inventory_open):	
 		handle_debug()
@@ -93,9 +96,8 @@ func check_inputs():
 	if Input.is_action_just_pressed("scroll_down"):
 		inventory.slot_change(1)
 
-	if Input.is_action_pressed("use") and inventory.selected_item and use_cooldown.is_stopped():
-		use_cooldown.start(inventory.selected_item.fire_rate)
-		player_status_control.reload_max = inventory.selected_item.fire_rate
+	if Input.is_action_pressed("use") and inventory.selected_item and inventory.selected_item.is_ready():
+		inventory.selected_item.start_cooldown_timer()
 		use()
 
 func take_damage(damage: float):
@@ -111,7 +113,8 @@ func check_invincible():
 		modulate.a = 1.0
 
 func render_cooldown_bar():
-	player_status_control.reload_value = use_cooldown.time_left
+	var cooldown_progress = inventory.selected_item.get_cooldown_progress()
+	player_status_control.reload_value = 1 - cooldown_progress
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):

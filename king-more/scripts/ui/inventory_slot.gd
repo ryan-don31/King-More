@@ -7,6 +7,7 @@ var inventory_ui_ref = null
 var item: ItemInstance = null
 
 @onready var icon = $TextureRect
+@onready var reload_anim = $ReloadAnim
 
 var mouse_hovered = false
 
@@ -25,6 +26,17 @@ func _input(event: InputEvent) -> void:
 
 				# Make item ur dragging not visible
 				inventory_ui_ref.drag_preview.visible = false
+
+func set_item(new_item: ItemInstance):
+	# If we're already connected to an old item, disconnect it first
+	if item and item.cooldown_started.is_connected(render_reload_anim):
+		item.cooldown_started.disconnect(render_reload_anim)
+
+	item = new_item
+
+	if item:
+		if not item.cooldown_started.is_connected(render_reload_anim):
+			item.cooldown_started.connect(render_reload_anim)
 
 func _process(delta: float) -> void:
 	if get_global_rect().has_point(get_global_mouse_position()):
@@ -54,3 +66,12 @@ func get_preview_position() -> Vector2:
 	finalpos.y -= 128
 
 	return finalpos
+
+func render_reload_anim():
+	var speed_scale = 1  / item.fire_rate
+	reload_anim.visible = true
+	reload_anim.speed_scale = speed_scale
+	reload_anim.play("default")
+
+func _on_reload_anim_animation_finished():
+	reload_anim.visible = false
