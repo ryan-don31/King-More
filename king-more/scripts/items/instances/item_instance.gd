@@ -2,7 +2,8 @@ extends Resource
 class_name ItemInstance
 
 var name: String = ""
-var item_type: String = ""
+var item_type: ItemTypes.ItemType
+var weapon_type: ItemTypes.WeaponType
 var damage: float = 0.0		# OPTIONAL - Damage dealt
 var healing: float = 0.0	# OPTIONAL - Healing dealt
 var fire_rate: float = 0.0	# Time in seconds between uses
