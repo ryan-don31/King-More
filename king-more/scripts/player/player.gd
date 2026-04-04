@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Movement stuff
-const SPEED = 300.0
+const SPEED = 200.0
 
 @onready var item_pivot = $ItemPivot
 @onready var camera = $Camera2D
@@ -73,6 +73,7 @@ func animate_item():
 	
 	# Is player holding an item?
 	if(inventory.selected_item):
+		item_sprite.texture = ItemHelper.load_texture(inventory.selected_item.item_type, inventory.selected_item.weapon_type)
 		item_sprite.visible = true
 	else:
 		item_sprite.visible = false

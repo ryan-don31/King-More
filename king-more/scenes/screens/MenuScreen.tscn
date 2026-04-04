@@ -2,9 +2,9 @@
 
 [node name="MenuScreen" type="Node2D" unique_id=1803461799]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=705605783]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1371593338]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

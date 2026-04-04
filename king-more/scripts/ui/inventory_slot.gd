@@ -6,7 +6,7 @@ var inventory_ref = null
 var inventory_ui_ref = null
 var item: ItemInstance = null
 
-@onready var icon = $TextureRect
+@onready var item_icon = $SlotItemTexture
 @onready var reload_anim = $ReloadAnim
 
 var mouse_hovered = false
@@ -19,18 +19,18 @@ func _input(event: InputEvent) -> void:
 				inventory_ref.from_index = slot_index
 
 				# Make item ur dragging visible
-				inventory_ui_ref.drag_preview.visible = true
+				inventory_ui_ref.drag_preview.show_preview(item)
 
 			elif !event.pressed and event.button_index == 1 and inventory_ref.from_index != -1:
 
 				inventory_ref.move_item(slot_type, slot_index)
 
 				# Make item ur dragging not visible
-				inventory_ui_ref.drag_preview.visible = false
+				inventory_ui_ref.drag_preview.hide_preview()
 
 			else:
 				inventory_ref.from_index = -1
-				inventory_ui_ref.drag_preview.visible = false
+				inventory_ui_ref.drag_preview.hide_preview()
 
 func set_item(new_item: ItemInstance):
 	# If we're already connected to an old item, disconnect it first
@@ -56,7 +56,7 @@ func _on_mouse_entered() -> void:
 		inventory_ui_ref.item_info.position = get_preview_position()
 		inventory_ui_ref.item_info.get_node("Item Name").text = item.name
 		inventory_ui_ref.item_info.get_node("Item Damage").text = "Damage: " + str(item.damage)
-		inventory_ui_ref.item_info.get_node("Item Firerate").text = "Fire Rate: " + str(item.fire_rate)
+		inventory_ui_ref.item_info.get_node("Item Firerate").text = "Reload Time: " + str(item.fire_rate) + "s"
 
 func _on_mouse_exited() -> void:
 	inventory_ui_ref.item_info.visible = false

@@ -10,7 +10,6 @@
 size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D" unique_id=1192430272]
-collision_layer = 2
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=698805546]
@@ -21,12 +20,14 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_lvxji")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=285032701]
+zoom = Vector2(2, 2)
 script = ExtResource("3_r66lb")
 smooth_speed = 16.0
 
 [node name="ItemPivot" type="Node2D" parent="." unique_id=141318025]
 
 [node name="ItemSprite" type="Sprite2D" parent="ItemPivot" unique_id=1962766706]
+visible = false
 position = Vector2(60, 19)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_gmlin")

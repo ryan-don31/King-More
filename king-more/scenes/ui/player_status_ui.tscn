@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://babssevuv0b6w"]
 
-[ext_resource type="Script" path="res://scripts/ui/player_status_ui.gd" id="1_514jd"]
+[ext_resource type="Script" uid="uid://bwf5rqomnrnp5" path="res://scripts/ui/player_status_ui.gd" id="1_514jd"]
 
 [node name="PlayerStatusUI" type="Control" unique_id=810138455]
 layout_mode = 3
@@ -16,6 +16,9 @@ offset_left = 6.0
 offset_top = 614.0
 offset_right = 506.0
 offset_bottom = 641.0
+exp_edit = true
+rounded = true
+show_percentage = false
 
 [node name="HP Label" type="Label" parent="." unique_id=109110409]
 layout_mode = 0
@@ -23,4 +26,4 @@ offset_left = 14.0
 offset_top = 615.0
 offset_right = 54.0
 offset_bottom = 638.0
-text = "HP"
+text = "HP:"

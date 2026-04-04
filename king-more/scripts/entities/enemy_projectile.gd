@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var damage: float = 5.0
-@export var speed: float = 150.0
+@export var speed: float = 0.0
 @export var direction: Vector2 = Vector2.ZERO
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

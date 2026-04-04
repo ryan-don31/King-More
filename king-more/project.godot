@@ -21,6 +21,7 @@ ItemSpawner="*uid://k8amg3figabe"
 Debug="*uid://d3too2hdnspji"
 UiManager="*uid://bk5lib2nmg2dj"
 GameState="*uid://dkm73d2baj4yp"
+ItemHelper="*uid://bd56c5bqt0mq5"
 
 [global_group]
 

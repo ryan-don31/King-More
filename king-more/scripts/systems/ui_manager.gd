@@ -13,9 +13,3 @@ func _input(event):
 
 func toggle_inventory():
 	inventory_open = !inventory_open
-
-func show_drag_preview(_dragging_item):
-	inventory_ui.drag_preview.visible = true
-
-func hide_drag_preview():
-	inventory_ui.drag_preview.visible = false

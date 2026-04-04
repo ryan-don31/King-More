@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c7dkyb5r1fjns" path="res://scenes/player/player.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
-[ext_resource type="PackedScene" uid="uid://io5b8dinojse" path="res://scenes/ui/player_status_ui.tscn" id="3_urvlt"]
+[ext_resource type="PackedScene" uid="uid://babssevuv0b6w" path="res://scenes/ui/player_status_ui.tscn" id="3_urvlt"]
 [ext_resource type="PackedScene" uid="uid://ci6g0va4xyobu" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://dtt3vtqs0h06i" path="res://assets/sprites/enemies/Dark_Gothic_Castle_Sprite.png" id="4_d4w6o"]
-[ext_resource type="PackedScene" path="res://scenes/ui/wave_indicator.tscn" id="4_ouxo3"]
+[ext_resource type="PackedScene" uid="uid://thvxeue36cdr" path="res://scenes/ui/wave_indicator.tscn" id="4_ouxo3"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
 [ext_resource type="PackedScene" uid="uid://dt2er0ob7rgly" path="res://scenes/enemies/range_enemy.tscn" id="7_mbbpy"]
 
@@ -66,4 +66,3 @@ texture = ExtResource("4_d4w6o")
 enemy_scene = ExtResource("4_xb4v1")
 ranged_enemy_scene = ExtResource("7_mbbpy")
 spawn_points_container = NodePath("../SpawnPoints")
-max_waves = 1

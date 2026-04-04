@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var max_health: float = 300                   # starting HP — dies at 0
 @export var fire_rate: float = 2.0                 # seconds between shots while in attack range
 @export var aim_spread: float = 0.3                # aiming accuracy in radians (0.0 = perfect, 0.3 = slight wobble, 0.8+ = very inaccurate)
+@export var projectile_speed: float		# Travel speed of the projectile
 
 ## Spawn
 @export var spawn_duration: float = 1.5            # flicker duration before becoming active (seconds)
@@ -87,6 +88,7 @@ func _physics_process(delta: float) -> void:
 func _fire_at_player(to_player: Vector2) -> void:
 	var projectile = PROJECTILE_SCENE.instantiate()
 	projectile.global_position = global_position
+	projectile.speed = projectile_speed
 	projectile.direction = to_player.rotated(randf_range(-aim_spread, aim_spread))
 	get_tree().current_scene.add_child(projectile)
 

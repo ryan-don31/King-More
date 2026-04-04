@@ -33,8 +33,8 @@ func add_item(item: ItemInstance) -> bool:
 	for i in range(inventory_slots.size()):
 		if inventory_slots[i] == null:
 			inventory_slots[i] = item
-			emit_signal("inventory_changed")
 			selected_item = equipped_slots[selected_slot]
+			emit_signal("inventory_changed")
 			return true
 	return false
 	
@@ -78,7 +78,8 @@ func slot_change(change: int):
 		selected_slot -= 1
 	if change == 1 and selected_slot < 4:
 		selected_slot += 1
+
+	selected_item = equipped_slots[selected_slot]
 	
 	emit_signal("inventory_changed")
-	
-	selected_item = equipped_slots[selected_slot]
+		

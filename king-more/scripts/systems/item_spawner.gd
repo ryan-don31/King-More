@@ -35,13 +35,7 @@ func spawn_random_wep(weapon_type_pool: Array, position: Vector2, min_damage: fl
 	var fire_rate = snapped(rng.randf_range(min_fire_rate, max_fire_rate), 0.01)
 	var weapon_name = ""
 
-	match chosen_type:
-		ItemTypes.WeaponType.BASIC:
-			weapon_name = adjectives.pick_random() + " Revolver"
-		ItemTypes.WeaponType.LIGHTNING:
-			weapon_name = adjectives.pick_random() + " Lightning Shocker"
-		ItemTypes.WeaponType.PLASMA:
-			weapon_name = adjectives.pick_random() + " Plasma Ring"
+	weapon_name = adjectives.pick_random() + " " + ItemHelper.get_item_name(ItemTypes.ItemType.WEAPON, chosen_type)
 
 	world_item.item = generate_weapon(chosen_type, weapon_name, damage, fire_rate)
 	world_item.position = position

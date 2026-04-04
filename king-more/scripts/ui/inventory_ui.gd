@@ -22,7 +22,7 @@ func _ready():
 	equpped_slot_nodes = equipped_slot_container.get_children()
 	inventory_slot_nodes = inventory_slot_container.get_children()
 
-	inventory.connect("inventory_changed", Callable(self, "update_ui"))
+	inventory.inventory_changed.connect(update_ui)
 	
 	update_ui()
 
@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 		inventory_slot_container.visible = false
 
 	# Little icon of the item you're dragging in the inventory
-	drag_preview.position = get_global_mouse_position() - Vector2(16,16) # Yes this is pretty ghetto, but setting the pivot offset doesn't seeem to do anything and I don't seem to really care right now
+	drag_preview.position = get_global_mouse_position() - Vector2(16,16) # 16 by 16 offset to be centered
 
 
 # This just visually updates the ui, to "sync" it with the inventory singleton
@@ -48,10 +48,10 @@ func update_ui():
 			highlight.position = slot.position
 
 		if item != null:
-			slot.icon.texture = load("res://assets/sprites/inventory/inventoryslot_full.png")
+			slot.item_icon.texture = ItemHelper.load_texture(item.item_type, item.weapon_type)
 
 		else:
-			slot.icon.texture = load("res://assets/sprites/inventory/inventoryslot_empty.png")
+			slot.item_icon.texture = null
 		
 		slot.slot_index = i
 		slot.slot_type = SlotType.EQUIPMENT
@@ -68,10 +68,10 @@ func update_ui():
 			highlight.position = slot.position
 
 		if item != null:
-			slot.icon.texture = load("res://assets/sprites/inventory/inventoryslot_full.png")
+			slot.item_icon.texture = ItemHelper.load_texture(item.item_type, item.weapon_type)
 
 		else:
-			slot.icon.texture = load("res://assets/sprites/inventory/inventoryslot_empty.png")
+			slot.item_icon.texture = null
 
 		slot.slot_index = i
 		slot.slot_type = SlotType.INVENTORY
