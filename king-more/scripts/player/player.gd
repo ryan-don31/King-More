@@ -104,6 +104,8 @@ func take_damage(damage: float):
 	if(invincible_timer <= 0.0):
 		health -= damage
 		invincible_timer = 50.0
+	if health <= 0:
+		GameState.game_over()
 
 func check_invincible():
 	if(invincible_timer > 0.0):

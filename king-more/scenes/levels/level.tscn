@@ -66,3 +66,4 @@ texture = ExtResource("4_d4w6o")
 enemy_scene = ExtResource("4_xb4v1")
 ranged_enemy_scene = ExtResource("7_mbbpy")
 spawn_points_container = NodePath("../SpawnPoints")
+max_waves = 1

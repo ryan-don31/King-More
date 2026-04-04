@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://di1pit37fph72"]
+
+[node name="GameOverScreen" type="Node2D" unique_id=2119956859]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=822065630]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=391067883]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER
+
+Press Space for Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
