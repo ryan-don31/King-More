@@ -101,15 +101,12 @@ func take_damage(amount: int) -> void:
 
 	current_health -= amount
 
-	print(self, " took ", amount, " damage! HP: ", current_health, "/", max_health)
 
 	health_changed.emit()
 
 	if current_health <= 0:
-		print(self, " died!")
 		queue_free()
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print(self, " hit the player!")
 		queue_free()

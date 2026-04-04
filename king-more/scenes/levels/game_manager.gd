@@ -34,13 +34,11 @@ func _ready() -> void:
 		push_error("No spawn_points container detected!")
 		return
 
-	print("Game starting. First wave in ", grace_period, "s")
 	timer.start(grace_period)
 
 func _start_next_wave() -> void:
 	current_wave += 1
 	if current_wave > max_waves:
-		print("All waves defeated!")
 		return
 	waiting_for_next_wave = false
 	_spawn_wave()
@@ -77,8 +75,6 @@ func _spawn_wave() -> void:
 		ranged_count = int(total_enemies * ranged_enemy_percentage)
 	var basic_count = total_enemies - ranged_count
 
-	print("Wave ", current_wave, "/", max_waves, " | Enemies: ", total_enemies, " (", basic_count, " basic, ", ranged_count, " ranged)")
-
 	# Build a flat shuffled list of scenes to spawn
 	var spawn_list = []
 	for i in range(basic_count):
@@ -103,11 +99,8 @@ func _on_enemy_died() -> void:
 	enemies_alive -= 1
 	if enemies_alive <= 0 and not waiting_for_next_wave:
 		waiting_for_next_wave = true
-		print("Wave ", current_wave, " cleared!")
 		if current_wave >= max_waves:
-			print("All waves defeated!")
 			return
-		print("Next wave in ", cooldown_between_waves, "s...")
 		timer.start(cooldown_between_waves)
 
 

@@ -1,6 +1,6 @@
 extends Control
 
-var slot_index: int
+var slot_index: int = -1
 var slot_type: int
 var inventory_ref = null
 var inventory_ui_ref = null
@@ -14,17 +14,22 @@ var mouse_hovered = false
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and inventory_ref:
 		if mouse_hovered:
-			if event.pressed and item:
+			if event.pressed and event.button_index == 1 and item:
 				inventory_ref.from_type = slot_type
 				inventory_ref.from_index = slot_index
 
 				# Make item ur dragging visible
 				inventory_ui_ref.drag_preview.visible = true
 
-			if !event.pressed:
+			elif !event.pressed and event.button_index == 1 and inventory_ref.from_index != -1:
+
 				inventory_ref.move_item(slot_type, slot_index)
 
 				# Make item ur dragging not visible
+				inventory_ui_ref.drag_preview.visible = false
+
+			else:
+				inventory_ref.from_index = -1
 				inventory_ui_ref.drag_preview.visible = false
 
 func set_item(new_item: ItemInstance):
@@ -69,6 +74,7 @@ func get_preview_position() -> Vector2:
 
 func render_reload_anim():
 	var speed_scale = 1  / item.fire_rate
+	reload_anim.stop()
 	reload_anim.visible = true
 	reload_anim.speed_scale = speed_scale
 	reload_anim.play("default")

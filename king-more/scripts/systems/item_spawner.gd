@@ -27,7 +27,6 @@ func generate_weapon(weapon_type: ItemTypes.WeaponType, name: String, damage: fl
 
 func spawn_random_wep(weapon_type_pool: Array, position: Vector2, min_damage: float, max_damage: float, min_fire_rate: float, max_fire_rate: float):
 	if weapon_type_pool.is_empty():
-		print("weapon type pool is empty dickhead")
 		return
 
 	var world_item = WORLD_ITEM_SCENE.instantiate()

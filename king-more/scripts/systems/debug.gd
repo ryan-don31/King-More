@@ -17,7 +17,7 @@ func make_random_item(mouse_pos: Vector2):
 		ItemTypes.WeaponType.PLASMA,
 		ItemTypes.WeaponType.LIGHTNING
 	]
-	ItemSpawner.spawn_random_wep(item_pool, mouse_pos, 10, 100, 0.05, 3.0)
+	ItemSpawner.spawn_random_wep(item_pool, mouse_pos, 10, 100, 0.05, 0.5)
 
 func zoom_camera(camera: Node):
 	camera.target_zoom *= Vector2(0.75, 0.75)
