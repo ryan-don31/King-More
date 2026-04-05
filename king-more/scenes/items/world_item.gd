@@ -9,7 +9,10 @@ var player: CharacterBody2D = null
 @export var attract_range: float = 150.0
 @export var attract_speed: float = 300.0
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 func _ready() -> void:
+	sprite.texture = ItemHelper.load_texture(item.item_type, item.weapon_type)
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
