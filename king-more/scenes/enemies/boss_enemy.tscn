@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bi430wp56g53g"]
+
+[ext_resource type="Script" uid="uid://cx51qhv5obnda" path="res://scenes/enemies/boss_enemy.gd" id="1_t3oiy"]
+[ext_resource type="Texture2D" uid="uid://cqhuc4uu7akkr" path="res://icon.svg" id="2_1dk32"]
+[ext_resource type="PackedScene" uid="uid://bjf5ja6gj3kfw" path="res://scenes/ui/enemy_health.tscn" id="2_ciwj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v88tk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm0l1"]
+
+[node name="BossEnemy" type="CharacterBody2D" unique_id=536774172 groups=["enemies"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_t3oiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1542934521]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_1dk32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=941841905]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_v88tk")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1632509400]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1333207470]
+scale = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_wm0l1")
+debug_color = Color(0.95723695, 0.071523, 0.49236733, 0.41960785)
+
+[node name="EnemyHealth" parent="." unique_id=1765253329 node_paths=PackedStringArray("enemy") instance=ExtResource("2_ciwj1")]
+enemy = NodePath("..")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
