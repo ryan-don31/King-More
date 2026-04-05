@@ -3,11 +3,21 @@ extends CharacterBody2D
 # Movement stuff
 const SPEED = 300.0
 
+# Dash stuff
+const DASH_SPEED = 900.0
+const DASH_DURATION = 0.15
+const DASH_COOLDOWN = 0.8
+
+var is_dashing = false
+var dash_timer = 0.0
+var dash_direction = Vector2.ZERO
+
 @onready var item_pivot = $ItemPivot
 @onready var camera = $Camera2D
 @onready var player_sprite = $PlayerSprite
 @onready var item_sprite = $ItemPivot/ItemSprite
 @onready var use_cooldown = $UseCooldown
+@onready var dash_cooldown = $DashCooldown
 @onready var player_status_control = $PlayerStatusControl
 
 @export var max_health: float = 100.0
@@ -49,19 +59,26 @@ func use():
 			projectile.damage = inventory.selected_item.damage
 			get_tree().current_scene.add_child(projectile)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	check_invincible()
 
 	if(inventory.selected_item):
 		render_cooldown_bar()
 
-	if(!UiManager.inventory_open):	
+	if(!UiManager.inventory_open):
 		handle_debug()
 		check_inputs()
 		animate_item()
 
-		var direction = get_move_direction()
-		velocity = direction * SPEED
+		if is_dashing:
+			dash_timer -= delta
+			velocity = dash_direction * DASH_SPEED
+			if dash_timer <= 0.0:
+				is_dashing = false
+		else:
+			var direction = get_move_direction()
+			velocity = direction * SPEED
+
 		move_and_slide()
 
 func animate_item():
@@ -99,6 +116,16 @@ func check_inputs():
 	if Input.is_action_pressed("use") and inventory.selected_item and inventory.selected_item.is_ready():
 		inventory.selected_item.start_cooldown_timer()
 		use()
+
+	if Input.is_action_just_pressed("dodge") and not is_dashing and dash_cooldown.is_stopped():
+		var dir = get_move_direction()
+		if dir == Vector2.ZERO:
+			dir = (get_global_mouse_position() - global_position).normalized()
+		is_dashing = true
+		dash_timer = DASH_DURATION
+		dash_direction = dir
+		invincible_timer = DASH_DURATION * 60.0
+		dash_cooldown.start(DASH_COOLDOWN)
 
 func take_damage(damage: float):
 	if(invincible_timer <= 0.0):
