@@ -57,6 +57,8 @@ func move_item(to_type: SlotType, to_index: int):
 	var from_array = _get_array(from_type)
 	var to_array = _get_array(to_type)
 
+	print(from_index, to_index)
+
 	# bounds safety
 	if from_index < 0 or from_index >= from_array.size():
 		return
@@ -68,6 +70,12 @@ func move_item(to_type: SlotType, to_index: int):
 
 	# nothing to move
 	if from_item == null:
+		return
+
+	# Can only put crowns on the crown slot, weapons in equip slots
+	if to_type == SlotType.CROWNS && from_item.item_category != ItemTypes.ItemCategory.CROWN:
+		return
+	if to_type == SlotType.EQUIPMENT && from_item.item_category != ItemTypes.ItemCategory.WEAPON:
 		return
 
 	# SWAP / MOVE

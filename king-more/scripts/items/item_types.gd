@@ -1,13 +1,18 @@
 extends Node
 class_name ItemTypes
 
-enum WeaponType {
-	BASIC,
-	LIGHTNING,
-	PLASMA
+enum ItemCategory {
+	WEAPON,
+	CROWN
 }
 
 enum ItemType {
-	WEAPON,
-	ARMOR
+	WEAPON_BASIC,
+	WEAPON_LIGHTNING,
+	WEAPON_PLASMA,
+	CROWN_FAST,
+	CROWN_TANK,
+	CROWN_REGEN,
+	CROWN_DAMAGE,
+	CROWN_FIRERATE
 }

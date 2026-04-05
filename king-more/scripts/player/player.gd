@@ -35,29 +35,30 @@ func _ready():
 func use():
 	var item = inventory.selected_item
 	
-	match item.weapon_type:
-		ItemTypes.WeaponType.BASIC:
-			var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
-			var dir = (get_global_mouse_position() - global_position).normalized()
-			projectile.global_position = global_position
-			projectile.direction = dir
-			projectile.damage = inventory.selected_item.damage
-			get_tree().current_scene.add_child(projectile)
+	if(item.weapon_type):
+		match item.weapon_type:
+			ItemTypes.ItemType.WEAPON_BASIC:
+				var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
+				var dir = (get_global_mouse_position() - global_position).normalized()
+				projectile.global_position = global_position
+				projectile.direction = dir
+				projectile.damage = inventory.selected_item.damage
+				get_tree().current_scene.add_child(projectile)
 
-		ItemTypes.WeaponType.LIGHTNING:
-			var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
-			projectile.global_position = global_position
-			projectile.target_pos = get_local_mouse_position()
-			projectile.damage = inventory.selected_item.damage
-			get_tree().current_scene.add_child(projectile)
-			
-		ItemTypes.WeaponType.PLASMA:
-			var projectile = preload("res://scenes/projectile/plasma_ring.tscn").instantiate()
-			var dir = (get_global_mouse_position() - global_position).normalized()
-			projectile.global_position = global_position
-			projectile.direction = dir
-			projectile.damage = inventory.selected_item.damage
-			get_tree().current_scene.add_child(projectile)
+			ItemTypes.ItemType.WEAPON_LIGHTNING:
+				var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
+				projectile.global_position = global_position
+				projectile.target_pos = get_local_mouse_position()
+				projectile.damage = inventory.selected_item.damage
+				get_tree().current_scene.add_child(projectile)
+				
+			ItemTypes.ItemType.WEAPON_PLASMA:
+				var projectile = preload("res://scenes/projectile/plasma_ring.tscn").instantiate()
+				var dir = (get_global_mouse_position() - global_position).normalized()
+				projectile.global_position = global_position
+				projectile.direction = dir
+				projectile.damage = inventory.selected_item.damage
+				get_tree().current_scene.add_child(projectile)
 
 func _process(delta: float) -> void:
 	check_invincible()
@@ -90,7 +91,7 @@ func animate_item():
 	
 	# Is player holding an item?
 	if(inventory.selected_item):
-		item_sprite.texture = ItemHelper.load_texture(inventory.selected_item.item_type, inventory.selected_item.weapon_type)
+		item_sprite.texture = ItemHelper.load_texture(inventory.selected_item.item_type)
 		item_sprite.visible = true
 	else:
 		item_sprite.visible = false
@@ -148,7 +149,7 @@ func render_cooldown_bar():
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
-		Debug.make_random_item(get_global_mouse_position())
+		Debug.make_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
 		Debug.zoom_camera(camera)

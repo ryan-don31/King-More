@@ -68,5 +68,3 @@ enemy_scene = ExtResource("4_xb4v1")
 ranged_enemy_scene = ExtResource("7_mbbpy")
 boss_enemy_scene = ExtResource("9_icy5c")
 spawn_points_container = NodePath("../SpawnPoints")
-grace_period = 10.0
-cooldown_between_waves = 15.0

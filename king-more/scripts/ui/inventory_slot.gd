@@ -9,28 +9,21 @@ var item: ItemInstance = null
 @onready var item_icon = $SlotItemTexture
 @onready var reload_anim = $ReloadAnim
 
+
+signal start_drag(item, slot_type, slot_index)
+signal end_drag()
+signal mouse_entered_slot()
+signal mouse_exited_slot()
+
 var mouse_hovered = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and inventory_ref:
 		if mouse_hovered:
 			if event.pressed and event.button_index == 1 and item:
-				inventory_ref.from_type = slot_type
-				inventory_ref.from_index = slot_index
-
-				# Make item ur dragging visible
-				inventory_ui_ref.drag_preview.show_preview(item)
-
-			elif !event.pressed and event.button_index == 1 and inventory_ref.from_index != -1:
-
-				inventory_ref.move_item(slot_type, slot_index)
-
-				# Make item ur dragging not visible
-				inventory_ui_ref.drag_preview.hide_preview()
-
-			else:
-				inventory_ref.from_index = -1
-				inventory_ui_ref.drag_preview.hide_preview()
+				emit_signal("start_drag", item, slot_type, slot_index)
+			elif !event.pressed and event.button_index == 1:
+				emit_signal("end_drag")
 
 func set_item(new_item: ItemInstance):
 	# If we're already connected to an old item, disconnect it first
@@ -43,20 +36,31 @@ func set_item(new_item: ItemInstance):
 		if not item.cooldown_started.is_connected(render_reload_anim):
 			item.cooldown_started.connect(render_reload_anim)
 
-func _process(delta: float) -> void:
-	if get_global_rect().has_point(get_global_mouse_position()):
-		mouse_hovered = true
+func set_icon_visible(visible: bool) -> void:
+	item_icon.visible = visible
 
-	else:
-		mouse_hovered = false
+func _process(delta: float) -> void:
+	var was_hovered = mouse_hovered
+	mouse_hovered = get_global_rect().has_point(get_global_mouse_position())
+	if mouse_hovered and not was_hovered:
+		emit_signal("mouse_entered_slot")
+	elif not mouse_hovered and was_hovered:
+		emit_signal("mouse_exited_slot")
 
 func _on_mouse_entered() -> void:
 	if(item):
-		inventory_ui_ref.item_info.visible = true
-		inventory_ui_ref.item_info.position = get_preview_position()
-		inventory_ui_ref.item_info.get_node("Item Name").text = item.name
-		inventory_ui_ref.item_info.get_node("Item Damage").text = "Damage: " + str(item.damage)
-		inventory_ui_ref.item_info.get_node("Item Firerate").text = "Reload Time: " + str(item.fire_rate) + "s"
+		# Weapon preview
+		if(item.item_category == ItemTypes.ItemCategory.WEAPON):
+			inventory_ui_ref.item_info.visible = true
+			inventory_ui_ref.item_info.position = get_preview_position()
+			inventory_ui_ref.item_info.get_node("Item Name").text = item.name
+			inventory_ui_ref.item_info.get_node("Item Damage").text = "Damage: " + str(item.damage)
+			inventory_ui_ref.item_info.get_node("Item Firerate").text = "Reload Time: " + str(item.fire_rate) + "s"
+		# Crown preview
+		if(item.item_category == ItemTypes.ItemCategory.CROWN):
+			inventory_ui_ref.item_info.visible = true
+			inventory_ui_ref.item_info.position = get_preview_position()
+			inventory_ui_ref.item_info.get_node("Item Name").text = item.name
 
 func _on_mouse_exited() -> void:
 	inventory_ui_ref.item_info.visible = false

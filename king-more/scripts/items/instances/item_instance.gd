@@ -4,11 +4,20 @@ class_name ItemInstance
 signal cooldown_started
 
 var name: String = ""
+var item_category: ItemTypes.ItemCategory
 var item_type: ItemTypes.ItemType
-var weapon_type: ItemTypes.WeaponType
+
+# Weapon attributes
 var damage: float = 0.0		# OPTIONAL - Damage dealt
 var healing: float = 0.0	# OPTIONAL - Healing dealt
 var fire_rate: float = 0.0	# Time in seconds between uses
+
+# Crown attributes
+var extra_health: float = 0.0
+var extra_speed: float = 0.0
+var health_regen: float = 0.0
+var damage_boost: float = 0.0
+var fire_rate_boost: float = 0.0
 
 var last_fire_time := -INF
 

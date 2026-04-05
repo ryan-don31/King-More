@@ -12,7 +12,7 @@ var player: CharacterBody2D = null
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _ready() -> void:
-	sprite.texture = ItemHelper.load_texture(item.item_type, item.weapon_type)
+	sprite.texture = ItemHelper.load_texture(item.item_type)
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
