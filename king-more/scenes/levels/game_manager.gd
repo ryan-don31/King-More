@@ -3,6 +3,7 @@ extends Node
 ## Scene references
 @export var enemy_scene: PackedScene               # basic melee enemy scene
 @export var ranged_enemy_scene: PackedScene         # ranged shooter enemy scene (optional — falls back to all basic if unset)
+@export var boss_enemy_scene: PackedScene           # boss scene — spawned alone on the final wave
 @export var spawn_points_container: Node            # parent node holding all Marker2D/Node2D spawn points
 
 ## Wave config
@@ -87,6 +88,9 @@ func _spawn_wave() -> void:
 		spawn_list.append(enemy_scene)
 	for i in range(ranged_count):
 		spawn_list.append(ranged_enemy_scene)
+	# On the final wave, add the boss to the mix
+	if boss_enemy_scene and current_wave == max_waves:
+		spawn_list.append(boss_enemy_scene)
 	spawn_list.shuffle()
 
 	enemies_alive = 0

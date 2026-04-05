@@ -34,6 +34,9 @@ texture = ExtResource("3_gmlin")
 [node name="UseCooldown" type="Timer" parent="." unique_id=1846396125]
 one_shot = true
 
+[node name="DashCooldown" type="Timer" parent="." unique_id=2047183421]
+one_shot = true
+
 [node name="PlayerStatusControl" parent="." unique_id=340326014 instance=ExtResource("5_p47bc")]
 offset_top = 64.0
 offset_bottom = 104.0
