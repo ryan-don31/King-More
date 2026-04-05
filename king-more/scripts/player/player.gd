@@ -1,7 +1,14 @@
 extends CharacterBody2D
 
-# Movement stuff
-const SPEED = 200.0
+# Player attributes
+@export var base_speed: float = 200.0
+@export var base_max_health: float = 100.0
+@export var base_health_regen: float = 0.0
+var speed: float = base_speed
+var max_health: float = base_max_health
+var health_regen: float = base_health_regen
+var damage_boost: float = 0.0
+var fire_rate_boost: float = 0.0
 
 # Dash stuff
 const DASH_SPEED = 900.0
@@ -20,7 +27,7 @@ var dash_direction = Vector2.ZERO
 @onready var dash_cooldown = $DashCooldown
 @onready var player_status_control = $PlayerStatusControl
 
-@export var max_health: float = 100.0
+# Current status
 var health: float = 100.0
 
 var invincible_timer = 0.0
@@ -30,6 +37,7 @@ var inventory: Inventory # Player's inventory
 
 func _ready():
 	inventory = Inventory.new()
+	inventory.inventory_changed.connect(check_crowns)
 	
 # USING ITEMS
 func use():
@@ -42,14 +50,14 @@ func use():
 				var dir = (get_global_mouse_position() - global_position).normalized()
 				projectile.global_position = global_position
 				projectile.direction = dir
-				projectile.damage = inventory.selected_item.damage
+				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
 
 			ItemTypes.ItemType.WEAPON_LIGHTNING:
 				var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
 				projectile.global_position = global_position
 				projectile.target_pos = get_local_mouse_position()
-				projectile.damage = inventory.selected_item.damage
+				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
 				
 			ItemTypes.ItemType.WEAPON_PLASMA:
@@ -57,8 +65,24 @@ func use():
 				var dir = (get_global_mouse_position() - global_position).normalized()
 				projectile.global_position = global_position
 				projectile.direction = dir
-				projectile.damage = inventory.selected_item.damage
+				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
+
+func check_crowns():
+	# Looping through because I plan to add multiple crown slots
+	for crown in inventory.crown_slots:
+		if(crown):
+			max_health = base_max_health + crown.extra_health
+			speed = base_speed + crown.extra_speed
+			health_regen = base_health_regen + crown.health_regen
+			damage_boost = crown.damage_boost
+			fire_rate_boost = crown.fire_rate_boost
+		else:
+			max_health = base_max_health
+			speed = base_speed
+			health_regen = base_health_regen
+			damage_boost = 0.0
+			fire_rate_boost = 0.0
 
 func _process(delta: float) -> void:
 	check_invincible()
@@ -78,7 +102,7 @@ func _process(delta: float) -> void:
 				is_dashing = false
 		else:
 			var direction = get_move_direction()
-			velocity = direction * SPEED
+			velocity = direction * speed
 
 		move_and_slide()
 
@@ -153,3 +177,10 @@ func handle_debug():
 		
 	if Input.is_action_just_pressed("debug_2"):
 		Debug.zoom_camera(camera)
+
+
+func _on_health_regen_cooldown_timeout() -> void:
+	if health_regen > 0:
+		health += health_regen
+	if health > max_health:
+		health = max_health

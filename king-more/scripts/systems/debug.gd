@@ -4,10 +4,10 @@ var rng = RandomNumberGenerator.new()
 
 func make_item(mouse_pos: Vector2):
 	var dropped_item = ItemInstance.new()
-	dropped_item.name = ItemHelper.get_item_name(ItemTypes.ItemType.CROWN_FAST)
+	dropped_item.name = ItemHelper.get_item_name(ItemTypes.ItemType.CROWN_REGEN)
 	dropped_item.item_category = ItemTypes.ItemCategory.CROWN
-	dropped_item.item_type = ItemTypes.ItemType.CROWN_FAST
-	dropped_item.extra_health = 50.0
+	dropped_item.item_type = ItemTypes.ItemType.CROWN_REGEN
+	dropped_item.health_regen = 1.0
 	
 	ItemSpawner.spawn(dropped_item, mouse_pos)
 
