@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var debug: bool = false
+
 # Player attributes
 @export var base_speed: float = 200.0
 @export var base_max_health: float = 100.0
@@ -42,10 +44,8 @@ func _ready():
 # USING ITEMS
 func use():
 	var item = inventory.selected_item
-
-	print(item)
 	
-	if(item.item_type):
+	if(item.item_type != null):
 		match item.item_type:
 			ItemTypes.ItemType.WEAPON_BASIC:
 				var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
@@ -53,7 +53,6 @@ func use():
 				projectile.global_position = global_position
 				projectile.direction = dir
 				projectile.damage = inventory.selected_item.damage + damage_boost
-				print("Getting here")
 				get_tree().current_scene.add_child(projectile)
 
 			ItemTypes.ItemType.WEAPON_LIGHTNING:
@@ -94,7 +93,9 @@ func _process(delta: float) -> void:
 		render_cooldown_bar()
 
 	if(!UiManager.inventory_open):
-		# handle_debug()
+		if debug:
+			handle_debug()
+			
 		check_inputs()
 		animate_item()
 

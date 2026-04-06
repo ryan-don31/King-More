@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var speed: float = 50.0                   # chase speed toward the player (pixels/sec)
-@export var max_health: float = 300                 # starting HP — dies at 0
+@export var max_health: float = 200                 # starting HP — dies at 0
 @export var spawn_duration: float = 1.5            # flicker duration before becoming active (seconds)
 @export var seperation_radius: float = 80.0        # distance at which nearby enemies start pushing away (pixels)
 @export var seperation_strength: float = 200.0     # how hard enemies push away from each other
@@ -15,6 +15,7 @@ var player: Node2D
 var current_health: float
 var spawning := true
 var item_drop: ItemInstance
+var bounce_back: float = 0.0
 
 func _ready() -> void:
 	_start_spawn_process()
@@ -44,19 +45,26 @@ func _physics_process(delta: float) -> void:
 	
 	# tries to chase the player if it exists
 	if player:
-		var direction = global_position.direction_to(player.global_position)
-		
-		var seperation = Vector2.ZERO
-		for enemy in get_tree().get_nodes_in_group("enemies"):
-			if enemy == self:
-				continue
-			var to_me = global_position - enemy.global_position
-			var dist = to_me.length()
-			if dist < seperation_radius and dist > 0:
-				seperation += to_me.normalized() / dist
-				
-		velocity = (direction * speed) + (seperation * seperation_strength)
-		move_and_slide()
+		if(bounce_back > 0.0):
+			bounce_back -= 1.0
+			var bounce_dir = (global_position - player.global_position).normalized()
+			var bounce_strength = 200.0 # You can tweak this value
+			velocity = bounce_dir * bounce_strength
+			move_and_slide()
+		else:
+			var direction = global_position.direction_to(player.global_position)
+			
+			var seperation = Vector2.ZERO
+			for enemy in get_tree().get_nodes_in_group("enemies"):
+				if enemy == self:
+					continue
+				var to_me = global_position - enemy.global_position
+				var dist = to_me.length()
+				if dist < seperation_radius and dist > 0:
+					seperation += to_me.normalized() / dist
+					
+			velocity = (direction * speed) + (seperation * seperation_strength)
+			move_and_slide()
 
 func take_damage(amount: float) -> void:
 	var damage_indicator = preload("res://scenes/ui/damage_indicator.tscn").instantiate()
@@ -77,5 +85,6 @@ func take_damage(amount: float) -> void:
 		queue_free()
 	
 func _on_hit_box_body_entered(body: Node2D) -> 	void:
-	if body.is_in_group("player"):
-		player.take_damage(10.0)
+		if body.is_in_group("player"):
+			player.take_damage(10.0)
+			bounce_back = 10.0

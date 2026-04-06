@@ -13,4 +13,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	health_bar.value = player.health
+	health_bar.max_value = player.max_health
 	health_label.text = "HP: " + str(player.health) + "/" + str(player.max_health)

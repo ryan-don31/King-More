@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://babssevuv0b6w"]
+[gd_scene format=3 uid="uid://db6uyjfx3bhl7"]
 
 [ext_resource type="Script" uid="uid://bwf5rqomnrnp5" path="res://scripts/ui/player_status_ui.gd" id="1_514jd"]
 
@@ -16,8 +16,6 @@ offset_left = 6.0
 offset_top = 614.0
 offset_right = 506.0
 offset_bottom = 641.0
-exp_edit = true
-rounded = true
 show_percentage = false
 
 [node name="HP Label" type="Label" parent="." unique_id=109110409]

@@ -28,7 +28,7 @@ extends CharacterBody2D
 @export var aim_spread: float = 0.15               # extra random wobble per projectile (radians)
 
 ## General combat
-@export var max_health: float = 1000.0
+@export var max_health: float = 4000.0
 @export var spawn_duration: float = 2.0
 
 ## Flocking

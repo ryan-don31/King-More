@@ -24,6 +24,18 @@ func _input(event: InputEvent) -> void:
 				emit_signal("start_drag", item, slot_type, slot_index)
 			elif !event.pressed and event.button_index == 1:
 				emit_signal("end_drag")
+			
+			# TEMPORARY "DELETE ITEM" LOGIC
+			elif event.pressed and event.button_index == 2 and item:
+				print(slot_type)
+				match slot_type:
+					inventory_ref.SlotType.CROWNS:
+						inventory_ref.crown_slots[slot_index] = null
+					inventory_ref.SlotType.INVENTORY:
+						inventory_ref.inventory_slots[slot_index] = null
+					inventory_ref.SlotType.EQUIPMENT:
+						inventory_ref.equipped_slots[slot_index] = null
+				inventory_ref.emit_signal("inventory_changed")
 
 func set_item(new_item: ItemInstance):
 	# If we're already connected to an old item, disconnect it first

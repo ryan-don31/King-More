@@ -25,14 +25,15 @@ var adjectives = [
 	"Dreamy",
 	"Toe-Tickling",
 	"Green",
-	"The Best"
+	"The Best",
+	"Cristiano's Own"
 ]
 
 func generate_weapon(weapon_type: ItemTypes.ItemType, name: String, damage: float, fire_rate: float):
 	var item_instance = ItemInstance.new()
 	item_instance.name = name
 	item_instance.item_category = ItemTypes.ItemCategory.WEAPON
-	item_instance.item_type = ItemTypes.ItemType.WEAPON_BASIC
+	item_instance.item_type = weapon_type
 	item_instance.damage = damage
 	item_instance.fire_rate = fire_rate
 	return item_instance
@@ -78,6 +79,7 @@ func generate_random_wep(weapon_type_pool: Array, min_damage: float, max_damage:
 			item_instance.damage *= 0.8
 		ItemTypes.ItemType.WEAPON_PLASMA:
 			item_instance.fire_rate *= 3
+			item_instance.damage *= 0.5
 
 	return item_instance
 
