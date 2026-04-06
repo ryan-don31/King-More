@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var stream_count: int = 12                 # number of projectiles in the stream burst
 @export var stream_interval: float = 0.08          # seconds between each projectile in the stream
 @export var stream_spread: float = 0.05            # tiny random wobble per shot so it doesn't feel robotic
+@export var stream_speed: float = 300.0
 
 ## Ranged combat
 @export var fire_rate: float = 1.8                 # seconds between arc bursts
@@ -47,6 +48,8 @@ var fire_cooldown: float = 0.0
 var swoop_timer: float = 0.0
 var swoop_destination: Vector2 = Vector2.ZERO
 var recovery_timer: float = 0.0
+
+var item_drop
 
 signal health_changed
 
@@ -182,6 +185,7 @@ func _fire_stream() -> void:
 		var to_player = global_position.direction_to(player.global_position)
 		var projectile = PROJECTILE_SCENE.instantiate()
 		projectile.global_position = global_position
+		projectile.speed = stream_speed
 		projectile.direction = to_player.rotated(randf_range(-stream_spread, stream_spread))
 		get_tree().current_scene.add_child(projectile)
 		await get_tree().create_timer(stream_interval).timeout

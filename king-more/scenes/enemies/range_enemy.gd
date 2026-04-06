@@ -23,6 +23,7 @@ var current_health: float
 var spawning: bool = true
 var fire_cooldown: float = 0.0
 var strafe_direction: int = 1
+var item_drop: ItemInstance
 
 signal health_changed
 
@@ -107,6 +108,8 @@ func take_damage(amount: int) -> void:
 	health_changed.emit()
 
 	if current_health <= 0:
+		if item_drop:
+			ItemSpawner.spawn(item_drop, position, self)
 		queue_free()
 
 func _on_hit_box_body_entered(body: Node2D) -> void:

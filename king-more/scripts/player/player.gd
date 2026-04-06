@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 		render_cooldown_bar()
 
 	if(!UiManager.inventory_open):
-		handle_debug()
+		# handle_debug()
 		check_inputs()
 		animate_item()
 

@@ -5,6 +5,7 @@ extends Node
 @export var ranged_enemy_scene: PackedScene         # ranged shooter enemy scene (optional — falls back to all basic if unset)
 @export var boss_enemy_scene: PackedScene           # boss scene — spawned alone on the final wave
 @export var spawn_points_container: Node            # parent node holding all Marker2D/Node2D spawn points
+@export var level_scene: Node
 
 ## Wave config
 @export var max_waves: int = 6                      # total number of waves before the game ends
@@ -31,6 +32,9 @@ var waiting_for_next_wave: bool = false
 func _ready() -> void:
 	GameState.is_transitioning = false
 	GameState.total_waves = max_waves
+
+	spawn_starting_wep()
+
 	if not enemy_scene:
 		push_error("Enemy scene is empty!")
 		return
@@ -101,9 +105,74 @@ func _spawn_wave() -> void:
 			var enemy = spawn_list[spawn_index].instantiate()
 			spawn_index += 1
 			enemy.global_position = point_pos + Vector2(randf_range(-spawn_offset_range, spawn_offset_range), randf_range(-spawn_offset_range, spawn_offset_range))
+			enemy.item_drop = build_item_drop()
 			enemy.tree_exiting.connect(_on_enemy_died)
 			get_tree().current_scene.add_child(enemy)
 			enemies_alive += 1
+
+func build_item_drop():
+	# Based on current wave
+	# Lightning start spawning on wave 2
+	# Crowns start spawning on wave 3
+	# Plasma start spawning on wave 5
+	var item_pool = [ItemTypes.ItemType.WEAPON_BASIC]
+	var spawn_crowns = false
+	var item_drop
+	var min_damage = 40
+	var max_damage = 70
+	var min_fire_rate = 0.5
+	var max_fire_rate = 2
+
+	if current_wave >= 2:
+		min_damage = 50
+		max_damage = 90
+		min_fire_rate = 0.45
+		max_fire_rate = 2.1
+		item_pool = [
+			ItemTypes.ItemType.WEAPON_BASIC,
+			ItemTypes.ItemType.WEAPON_LIGHTNING,
+			ItemTypes.ItemType.WEAPON_PLASMA
+		]
+	elif current_wave >= 3:
+		spawn_crowns = true
+		min_damage = 50
+		max_damage = 100
+		min_fire_rate = 0.4
+		max_fire_rate = 2.2
+		item_pool = [
+			ItemTypes.ItemType.WEAPON_BASIC,
+			ItemTypes.ItemType.WEAPON_LIGHTNING,
+			ItemTypes.ItemType.WEAPON_PLASMA
+		]
+	elif current_wave >= 5:
+		spawn_crowns = true
+		min_damage = 50
+		max_damage = 120
+		min_fire_rate = 0.3
+		max_fire_rate = 2.5
+		item_pool = [
+			ItemTypes.ItemType.WEAPON_BASIC,
+			ItemTypes.ItemType.WEAPON_LIGHTNING,
+			ItemTypes.ItemType.WEAPON_PLASMA
+		]
+	
+	# 30% chance of weapon drop. 80% of drops are weapon, rest can be crown
+	if randf() < 0.3:
+		if randf() < 0.8:
+			# weapon_type_pool: Array, min_damage: float, max_damage: float, min_fire_rate: float, max_fire_rate: float
+			item_drop = ItemSpawner.generate_random_wep(item_pool, min_damage, max_damage, min_fire_rate, max_fire_rate)
+		else:
+			item_drop = ItemSpawner.generate_random_crown()
+
+func spawn_starting_wep():
+	var weapon_type = ItemTypes.ItemType.WEAPON_BASIC
+	var weapon_name = "Starting Revolver"
+	var damage = 50.0
+	var fire_rate = 0.75
+	var starting_wep: ItemInstance = ItemSpawner.generate_weapon(weapon_type, weapon_name, damage, fire_rate)
+
+	print("Hello")
+	ItemSpawner.spawn(starting_wep, Vector2(100,100), level_scene)
 
 func _on_enemy_died() -> void:
 	if GameState.is_transitioning:
