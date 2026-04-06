@@ -9,7 +9,7 @@ func make_item(mouse_pos: Vector2):
 	dropped_item.item_type = ItemTypes.ItemType.CROWN_REGEN
 	dropped_item.health_regen = 1.0
 	
-	ItemSpawner.spawn(dropped_item, mouse_pos, self)
+	ItemSpawner.spawn(dropped_item, mouse_pos)
 
 func make_random_item(mouse_pos: Vector2):
 	var item_pool = [

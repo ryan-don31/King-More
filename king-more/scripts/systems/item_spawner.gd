@@ -32,7 +32,7 @@ func generate_weapon(weapon_type: ItemTypes.ItemType, name: String, damage: floa
 	var item_instance = ItemInstance.new()
 	item_instance.name = name
 	item_instance.item_category = ItemTypes.ItemCategory.WEAPON
-	item_instance.item_type = weapon_type
+	item_instance.item_type = ItemTypes.ItemType.WEAPON_BASIC
 	item_instance.damage = damage
 	item_instance.fire_rate = fire_rate
 	return item_instance
@@ -81,8 +81,8 @@ func generate_random_wep(weapon_type_pool: Array, min_damage: float, max_damage:
 
 	return item_instance
 
-func spawn(item_instance: ItemInstance, position: Vector2, scene: Node):
+func spawn(item_instance: ItemInstance, position: Vector2):
 	var world_item = WORLD_ITEM_SCENE.instantiate()
 	world_item.item = item_instance
 	world_item.position = position
-	scene.add_child(world_item)
+	get_tree().current_scene.add_child(world_item)

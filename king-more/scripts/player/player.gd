@@ -42,15 +42,18 @@ func _ready():
 # USING ITEMS
 func use():
 	var item = inventory.selected_item
+
+	print(item)
 	
-	if(item.weapon_type):
-		match item.weapon_type:
+	if(item.item_type):
+		match item.item_type:
 			ItemTypes.ItemType.WEAPON_BASIC:
 				var projectile = preload("res://scenes/projectile/projectile.tscn").instantiate()
 				var dir = (get_global_mouse_position() - global_position).normalized()
 				projectile.global_position = global_position
 				projectile.direction = dir
 				projectile.damage = inventory.selected_item.damage + damage_boost
+				print("Getting here")
 				get_tree().current_scene.add_child(projectile)
 
 			ItemTypes.ItemType.WEAPON_LIGHTNING:

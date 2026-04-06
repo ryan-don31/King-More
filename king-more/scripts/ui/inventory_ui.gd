@@ -63,13 +63,11 @@ func _input(event: InputEvent) -> void:
 		# Mouse released, check if over a slot
 		if hovered_slot:
 			# Drop on hovered slot
-			print("Hovered")
 			inventory.move_item(hovered_slot.slot_type, hovered_slot.slot_index)
 		# Cancel drag if not over a slot
 		_cancel_drag()
 
 func _on_slot_start_drag(item: ItemInstance, slot_type: int, slot_index: int):
-	print("starting drag:", dragged_item)
 	is_dragging = true
 	dragged_item = item
 	inventory.from_type = slot_type

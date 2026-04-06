@@ -109,7 +109,7 @@ func take_damage(amount: int) -> void:
 
 	if current_health <= 0:
 		if item_drop:
-			ItemSpawner.spawn(item_drop, position, self)
+			ItemSpawner.spawn(item_drop, position)
 		queue_free()
 
 func _on_hit_box_body_entered(body: Node2D) -> void:

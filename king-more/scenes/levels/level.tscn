@@ -63,12 +63,11 @@ position = Vector2(1336, 761)
 [node name="Sprite2D" type="Sprite2D" parent="SpawnPoints/SpawnPoint3" unique_id=1710347441]
 texture = ExtResource("4_d4w6o")
 
-[node name="GameManager" parent="." unique_id=2111597040 node_paths=PackedStringArray("spawn_points_container", "level_scene") instance=ExtResource("3_xb4v1")]
+[node name="GameManager" parent="." unique_id=2111597040 node_paths=PackedStringArray("spawn_points_container") instance=ExtResource("3_xb4v1")]
 enemy_scene = ExtResource("4_xb4v1")
 ranged_enemy_scene = ExtResource("7_mbbpy")
 boss_enemy_scene = ExtResource("9_icy5c")
 spawn_points_container = NodePath("../SpawnPoints")
-level_scene = NodePath("..")
 base_enemies_per_wave = 3
 enemies_per_wave_increase = 3
 grace_period = 10.0

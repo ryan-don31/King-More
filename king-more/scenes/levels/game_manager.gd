@@ -33,7 +33,7 @@ func _ready() -> void:
 	GameState.is_transitioning = false
 	GameState.total_waves = max_waves
 
-	spawn_starting_wep()
+	call_deferred("spawn_starting_wep")
 
 	if not enemy_scene:
 		push_error("Enemy scene is empty!")
@@ -171,8 +171,7 @@ func spawn_starting_wep():
 	var fire_rate = 0.75
 	var starting_wep: ItemInstance = ItemSpawner.generate_weapon(weapon_type, weapon_name, damage, fire_rate)
 
-	print("Hello")
-	ItemSpawner.spawn(starting_wep, Vector2(100,100), level_scene)
+	ItemSpawner.spawn(starting_wep, Vector2(256,128))
 
 func _on_enemy_died() -> void:
 	if GameState.is_transitioning:
