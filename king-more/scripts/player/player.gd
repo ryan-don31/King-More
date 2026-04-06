@@ -92,7 +92,8 @@ func _process(delta: float) -> void:
 	if(inventory.selected_item):
 		render_cooldown_bar()
 
-	if(!UiManager.inventory_open):
+	# Formerly if(!UiManager.inventory_open):
+	if(true):
 		if debug:
 			handle_debug()
 			
