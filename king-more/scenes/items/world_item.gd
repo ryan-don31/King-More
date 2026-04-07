@@ -11,6 +11,8 @@ var player: CharacterBody2D = null
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+var item_pickup_notification: PackedScene = preload("../ui/item_pickup_notification.tscn")
+
 func _ready() -> void:
 	sprite.texture = ItemHelper.load_texture(item.item_type)
 	player = get_tree().get_first_node_in_group("player")
@@ -30,4 +32,8 @@ func _process(_delta):
 
 func pickup():	
 	if player and player.inventory.add_item(item):
+		var item_pickup_notification := preload("res://scenes/ui/item_pickup_notification.tscn").instantiate()
+		item_pickup_notification.notification_text = item.name
+		item_pickup_notification.position = position
+		get_tree().current_scene.add_child(item_pickup_notification)
 		queue_free()

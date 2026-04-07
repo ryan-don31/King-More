@@ -6,8 +6,7 @@ var rng = RandomNumberGenerator.new()
 var crown_types = [
 	ItemTypes.ItemType.CROWN_DAMAGE,
 	ItemTypes.ItemType.CROWN_FAST,
-	ItemTypes.ItemType.CROWN_REGEN,
-	ItemTypes.ItemType.CROWN_TANK
+	ItemTypes.ItemType.CROWN_REGEN
 ]
 
 var weapon_types = [

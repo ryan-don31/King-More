@@ -129,7 +129,7 @@ func build_item_drop():
 	var max_fire_rate = 2
 
 
-	if current_wave >= 5:
+	if current_wave >= 4:
 		spawn_crowns = true
 		drop_chance = 0.2
 		min_damage = 50
@@ -150,7 +150,7 @@ func build_item_drop():
 		max_fire_rate = 2.2
 		item_pool = [
 			ItemTypes.ItemType.WEAPON_BASIC,
-			ItemTypes.ItemType.WEAPON_LIGHTNING,
+			ItemTypes.ItemType.WEAPON_LIGHTNING
 		]
 	elif current_wave >= 2:
 		min_damage = 50
@@ -159,6 +159,7 @@ func build_item_drop():
 		max_fire_rate = 2.1
 		item_pool = [
 			ItemTypes.ItemType.WEAPON_BASIC,
+			ItemTypes.ItemType.WEAPON_LIGHTNING
 		]
 	
 	

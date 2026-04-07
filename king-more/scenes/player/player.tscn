@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ng1qxgsp7bwr" path="res://assets/sprites/items/basic_gun.png" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://ciqofofnbu1u3" path="res://scripts/camera.gd" id="3_r66lb"]
 [ext_resource type="PackedScene" uid="uid://djdj8hfwlhblv" path="res://scenes/ui/player_status_control.tscn" id="5_p47bc"]
+[ext_resource type="AudioStream" uid="uid://dcmkiocfex76g" path="res://assets/audio/bgmusic.wav" id="6_75vfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(64, 64)
@@ -44,5 +45,13 @@ offset_bottom = 104.0
 
 [node name="HealthRegenCooldown" type="Timer" parent="." unique_id=948695255]
 autostart = true
+
+[node name="player_sfx" type="AudioStreamPlayer2D" parent="." unique_id=2091402299]
+volume_db = -5.0
+
+[node name="bg_music" type="AudioStreamPlayer2D" parent="." unique_id=613705198]
+stream = ExtResource("6_75vfm")
+volume_db = 12.0
+autoplay = true
 
 [connection signal="timeout" from="HealthRegenCooldown" to="." method="_on_health_regen_cooldown_timeout"]

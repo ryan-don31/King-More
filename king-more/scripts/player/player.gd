@@ -5,7 +5,7 @@ var debug: bool = false
 # Player attributes
 @export var base_speed: float = 200.0
 @export var base_max_health: float = 100.0
-@export var base_health_regen: float = 0.0
+@export var base_health_regen: float = 0.5
 var speed: float = base_speed
 var max_health: float = base_max_health
 var health_regen: float = base_health_regen
@@ -28,11 +28,18 @@ var dash_direction = Vector2.ZERO
 @onready var use_cooldown = $UseCooldown
 @onready var dash_cooldown = $DashCooldown
 @onready var player_status_control = $PlayerStatusControl
+@onready var player_sfx = $player_sfx
+@onready var bg_music = $bg_music
 
 # Current status
 var health: float = 100.0
 
 var invincible_timer = 0.0
+
+var revolver_sound = preload("res://assets/audio/revolver.wav")
+var lightning_sound = preload("res://assets/audio/lightning.wav")
+var plasma_sound = preload("res://assets/audio/plasma.wav")
+var music = preload("res://assets/audio/bgmusic.wav")
 
 # Inventory/equipment stuff
 var inventory: Inventory # Player's inventory
@@ -40,6 +47,8 @@ var inventory: Inventory # Player's inventory
 func _ready():
 	inventory = Inventory.new()
 	inventory.inventory_changed.connect(check_crowns)
+	bg_music.stream = music
+	bg_music.play()
 	
 # USING ITEMS
 func use():
@@ -54,6 +63,8 @@ func use():
 				projectile.direction = dir
 				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
+				player_sfx.stream = revolver_sound
+				player_sfx.play()
 
 			ItemTypes.ItemType.WEAPON_LIGHTNING:
 				var projectile = preload("res://scenes/projectile/lightning_shock.tscn").instantiate()
@@ -61,6 +72,8 @@ func use():
 				projectile.target_pos = get_local_mouse_position()
 				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
+				player_sfx.stream = lightning_sound
+				player_sfx.play()
 				
 			ItemTypes.ItemType.WEAPON_PLASMA:
 				var projectile = preload("res://scenes/projectile/plasma_ring.tscn").instantiate()
@@ -69,6 +82,8 @@ func use():
 				projectile.direction = dir
 				projectile.damage = inventory.selected_item.damage + damage_boost
 				get_tree().current_scene.add_child(projectile)
+				player_sfx.stream = plasma_sound
+				player_sfx.play()
 
 func check_crowns():
 	# Looping through because I plan to add multiple crown slots
@@ -178,7 +193,7 @@ func render_cooldown_bar():
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
-		Debug.make_item(get_global_mouse_position())
+		Debug.make_op_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
 		Debug.zoom_camera(camera)
