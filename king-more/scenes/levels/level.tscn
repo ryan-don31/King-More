@@ -848,11 +848,11 @@ ranged_enemy_scene = ExtResource("7_mbbpy")
 boss_enemy_scene = ExtResource("9_icy5c")
 spawn_points_container = NodePath("../SpawnPoints")
 player = NodePath("../Player")
+max_waves = 1
 base_enemies_per_wave = 3
 enemies_per_wave_increase = 3
 wave_multiplier = 1.0
 drop_chance = 0.5
-grace_period = 15.0
 cooldown_between_waves = 12.0
 
 [node name="horizontal_wall2" type="StaticBody2D" parent="." unique_id=947232012]

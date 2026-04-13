@@ -172,6 +172,7 @@ func _fire_arc(base_direction: Vector2) -> void:
 		var projectile = PROJECTILE_SCENE.instantiate()
 		projectile.global_position = global_position
 		projectile.direction = base_direction.rotated(angle)
+		projectile.speed = stream_speed
 		get_tree().current_scene.add_child(projectile)
 
 func _begin_stream() -> void:

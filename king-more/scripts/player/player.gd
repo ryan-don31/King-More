@@ -193,7 +193,7 @@ func render_cooldown_bar():
 
 func handle_debug():
 	if Input.is_action_just_pressed("debug_1"):
-		Debug.make_random_crown(get_global_mouse_position())
+		Debug.make_random_item(get_global_mouse_position())
 		
 	if Input.is_action_just_pressed("debug_2"):
 		Debug.zoom_camera(camera)

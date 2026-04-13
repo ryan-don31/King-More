@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dbj3xcd2q41x"]
 
+[ext_resource type="Texture2D" uid="uid://xo3m16h6qvrd" path="res://scenes/Title_Pic.png" id="1_cf684"]
+
 [node name="MenuScreen" type="Node2D" unique_id=1803461799]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=705605783]
@@ -10,14 +12,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -50.0
-offset_right = 200.0
-offset_bottom = 50.0
+offset_left = -215.0
+offset_top = 95.0
+offset_right = 185.0
+offset_bottom = 195.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "KING MORE
-
-Press Space to Start"
+text = "Press Space to Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=379881561]
+offset_left = 259.0
+offset_top = 116.0
+offset_right = 890.0
+offset_bottom = 479.0
+texture = ExtResource("1_cf684")
