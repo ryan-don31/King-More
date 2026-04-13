@@ -30,5 +30,8 @@ func make_random_item(mouse_pos: Vector2):
 	var wep = ItemSpawner.generate_random_wep(item_pool, 10, 100, 0.05, 5.0)
 	ItemSpawner.spawn(wep, mouse_pos)
 
+func make_random_crown(mouse_pos: Vector2):
+	ItemSpawner.spawn(ItemSpawner.generate_random_crown(), mouse_pos)
+
 func zoom_camera(camera: Node):
 	camera.target_zoom *= Vector2(0.75, 0.75)

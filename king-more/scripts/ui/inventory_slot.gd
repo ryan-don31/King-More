@@ -66,6 +66,8 @@ func _on_mouse_entered() -> void:
 			inventory_ui_ref.item_info.visible = true
 			inventory_ui_ref.item_info.position = get_preview_position()
 			inventory_ui_ref.item_info.get_node("Item Name").text = item.name
+			inventory_ui_ref.item_info.get_node("Item Damage").visible = true
+			inventory_ui_ref.item_info.get_node("Item Firerate").visible = true
 			inventory_ui_ref.item_info.get_node("Item Damage").text = "Damage: " + str(item.damage)
 			inventory_ui_ref.item_info.get_node("Item Firerate").text = "Reload Time: " + str(item.fire_rate) + "s"
 		# Crown preview
@@ -73,6 +75,8 @@ func _on_mouse_entered() -> void:
 			inventory_ui_ref.item_info.visible = true
 			inventory_ui_ref.item_info.position = get_preview_position()
 			inventory_ui_ref.item_info.get_node("Item Name").text = item.name
+			inventory_ui_ref.item_info.get_node("Item Damage").visible = false
+			inventory_ui_ref.item_info.get_node("Item Firerate").visible = false
 
 func _on_mouse_exited() -> void:
 	inventory_ui_ref.item_info.visible = false

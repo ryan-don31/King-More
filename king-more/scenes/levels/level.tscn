@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://be51abvrw4cja" path="res://assets/sprites/tileset/grass.png" id="1_rmjfq"]
 [ext_resource type="PackedScene" uid="uid://ddb2f7hgpp2n6" path="res://scenes/ui/InventoryUI.tscn" id="3_b2cq8"]
 [ext_resource type="PackedScene" uid="uid://db6uyjfx3bhl7" path="res://scenes/ui/player_status_ui.tscn" id="3_urvlt"]
-[ext_resource type="PackedScene" uid="uid://ci6g0va4xyobu" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/game_manager.tscn" id="3_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://dtt3vtqs0h06i" path="res://assets/sprites/enemies/Dark_Gothic_Castle_Sprite.png" id="4_d4w6o"]
 [ext_resource type="PackedScene" uid="uid://thvxeue36cdr" path="res://scenes/ui/wave_indicator.tscn" id="4_ouxo3"]
 [ext_resource type="PackedScene" uid="uid://c0fc3i2di41ky" path="res://scenes/enemies/basic_enemy.tscn" id="4_xb4v1"]
@@ -848,7 +848,6 @@ ranged_enemy_scene = ExtResource("7_mbbpy")
 boss_enemy_scene = ExtResource("9_icy5c")
 spawn_points_container = NodePath("../SpawnPoints")
 player = NodePath("../Player")
-max_waves = 1
 base_enemies_per_wave = 3
 enemies_per_wave_increase = 3
 wave_multiplier = 1.0
